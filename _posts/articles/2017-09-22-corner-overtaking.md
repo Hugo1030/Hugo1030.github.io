@@ -2,7 +2,7 @@
 layout: post
 title: "「弯道超车」的一些思考"
 excerpt: "写在「开智大会」之后"
-categories: article
+categories: articles
 author: 沥川
 modified:
 ---
