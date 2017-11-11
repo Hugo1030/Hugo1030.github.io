@@ -2,7 +2,7 @@
 layout: post
 title: "苦海无涯回头岸"
 excerpt: "Py104 结业感悟"
-categories: article
+categories: articles
 author: 沥川
 modified:
 ---
