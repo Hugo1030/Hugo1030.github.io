@@ -1,0 +1,390 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Learn python in hard way 1-20 &#8211; 沥川</title>
+<meta name="description" content="Learn python in hard way 练习 1-20.">
+<meta name="keywords" content="Python">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Learn python in hard way 1-20">
+<meta name="twitter:description" content="Learn python in hard way 练习 1-20.">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://Hugo1030.github.io/images/site-logo.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="中国">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn python in hard way 1-20">
+<meta property="og:description" content="Learn python in hard way 练习 1-20.">
+<meta property="og:url" content="https://Hugo1030.github.io/tech/learn-python-in-hard-way-ex1-20/">
+<meta property="og:site_name" content="沥川">
+
+
+
+
+
+<link rel="canonical" href="https://Hugo1030.github.io/tech/learn-python-in-hard-way-ex1-20/">
+<link href="https://Hugo1030.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="沥川 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://Hugo1030.github.io/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="https://Hugo1030.github.io/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="https://Hugo1030.github.io/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="https://Hugo1030.github.io/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="https://Hugo1030.github.io/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="https://Hugo1030.github.io/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="https://Hugo1030.github.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://Hugo1030.github.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://Hugo1030.github.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://Hugo1030.github.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="https://Hugo1030.github.io/about/" >关于</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/articles/" >随笔</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/note/" >笔记</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/tech/" >技术</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/invest/" >投资</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/wiki/" >维基</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/search/" >搜索</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+  		<a href="https://Hugo1030.github.io/" class="site-logo" rel="home" title="沥川"><img src="https://Hugo1030.github.io/images/site-logo.png" width="200" height="200" alt="沥川 logo" class="animated fadeInDown"></a>
+      
+      <h1 class="site-title animated fadeIn"><a href="https://Hugo1030.github.io/">沥川</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">士不可不弘毅</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="https://Hugo1030.github.io/tags/#Python" title="Pages tagged Python">Python</a></li>
+        </ul>
+        
+          <h1 class="entry-title">Learn python in hard way 1-20</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="https://Hugo1030.github.io/images/bio-photo-2.jpg" class="bio-photo" alt="沥川 bio photo"></a>
+        
+        <span class="author vcard">By <span class="fn">沥川</span></span>
+        <span class="entry-date date published"><time datetime="2017-05-08T00:00:00+08:00"><i class="fa fa-calendar-o"></i> May 08, 2017</time></span>
+        
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <h3 id="pythonatom">练习0 安装python和atom</h3>
+
+<ol>
+  <li>下载atom,网址<a href="https://atom.io/">https://atom.io/</a></li>
+  <li>把atom放到dock</li>
+  <li>找到terminal终端</li>
+  <li>把它放到dock</li>
+  <li>在terminal里面打python</li>
+  <li>输入quit()加回车退出Python</li>
+  <li>在GitHub上创建一个仓库，learnpython</li>
+  <li>将仓库clone到本地</li>
+  <li>cd learnpython进入本地仓库</li>
+  <li>使用atom编辑python文档，保存在learnpython仓库</li>
+  <li>以后完成的练习通过git上传到GitHub上保存</li>
+</ol>
+
+<h3 id="hello-world">练习1 Hello world</h3>
+
+<ol>
+  <li>在atom里面输入代码</li>
+  <li>练习print</li>
+  <li>练习””和’’输出str</li>
+  <li>练习在terminal中查看程序运行结果</li>
+  <li>打开terminal,首先进入cd learnpython</li>
+  <li>然后输入python ex1.py</li>
+</ol>
+
+<h3 id="section">练习2  注释</h3>
+
+<ol>
+  <li>后面是注释内容，不在文档中体现。</li>
+</ol>
+
+<h3 id="section-1">练习3 数字和数学计算</h3>
+
+<ol>
+  <li>练习基本+ - * / %(求余数)</li>
+  <li>练习Print 用,（逗号）隔开，会在同一行输出，中间空格</li>
+  <li>如果要换行，需要在另一行重新输入print</li>
+</ol>
+
+<h3 id="section-2">练习4 变量</h3>
+
+<ol>
+  <li>学习给变量赋值 用‘=’</li>
+  <li>学习分析错误原因，未给变量赋值</li>
+  <li>学会变量之间做数学计算</li>
+  <li>学习输入让阅读更美观，运算符号后面加个空格</li>
+</ol>
+
+<h3 id="section-3">练习5 格式化输入</h3>
+
+<ol>
+  <li>变量既可以赋值为数字，又可以赋值为str</li>
+  <li>Print 一句话中，可以先用格式化字符占位，后面再进行填充。</li>
+  <li>格式是%s(代表这个位置是一个str)，后面%字符串</li>
+  <li>%d（代表这是一个整数）</li>
+  <li>如何要输出多个格式化字符，后面需用()中间用,隔开</li>
+  <li>句子和%之间没有逗号，注意</li>
+</ol>
+
+<h3 id="section-4">练习6 更多格式化输入</h3>
+
+<ol>
+  <li>格式化字符可以嵌套使用</li>
+  <li>%r表示不带格式的完全输出</li>
+  <li>两个str中间用+连起来，等于两句话连起来在同一行输出</li>
+</ol>
+
+<h3 id="print">练习7 更多的Print输出</h3>
+
+<ol>
+  <li>Str通过*可以重复N次</li>
+  <li>一句话以,逗号结尾，下一句可以和上一句在同一行输出，中间空一格</li>
+</ol>
+
+<h3 id="print-1">练习8 更多的print</h3>
+
+<ol>
+  <li>在双引号里面再出现双引号，输出时，里面的双引号变成单引号</li>
+  <li>格式化输出可以调用自身，注意输出里面是没有逗号</li>
+</ol>
+
+<h3 id="print-2">练习9 更多的Print</h3>
+
+<ol>
+  <li>\n代表换行符</li>
+  <li>打印多个内容在同一行，中间用，逗号隔开</li>
+  <li>“”“ ”“”三引号之间的内容，可以输入多行str文本，原样输出</li>
+  <li>‘’和“”只能输出单行文字</li>
+</ol>
+
+<h3 id="section-5">练习10 转义字符</h3>
+
+<ol>
+  <li>\t为制表符，代表一个缩进</li>
+  <li>\n为换行符，\为一个\</li>
+</ol>
+
+<h3 id="section-6">练习11  输入</h3>
+
+<ol>
+  <li>raw_input—&gt;string</li>
+  <li>Input = eval(raw_input())—&gt;int</li>
+  <li>Pydoc和help()不同，前者功能更强，help只能用于函数</li>
+</ol>
+
+<h3 id="section-7">练习12 提示</h3>
+
+<ol>
+  <li>raw_input(string)</li>
+</ol>
+
+<h3 id="section-8">练习13 参数解包变量</h3>
+
+<ol>
+  <li>引入sys模组，里面argv函数，为程序添加变量</li>
+  <li>argv[0]为程序名，后面才是参数</li>
+  <li>为了让输出美观点，注意中间空行</li>
+</ol>
+
+<h3 id="section-9">练习14 解包参数和输入</h3>
+
+<ol>
+  <li>参数解包是事先输入的，更多用于固定情况，比如程序名，人名</li>
+  <li>raw_input更多是用于与用户的交互，界面更友好，更多提示</li>
+</ol>
+
+<h3 id="section-10">练习15 读文件</h3>
+
+<ol>
+  <li>可以用argv解开文件名，因为文件名是固定的，不需要用户交互。</li>
+  <li>open(name[, mode[, buffering]]) -&gt; file object
+    <ul>
+      <li>例如：open(filename,’w’)</li>
+    </ul>
+  </li>
+  <li>open函数如果不指定打开方式的话，默认为read</li>
+  <li>文件要先打开为file object，然后才能使用write,read等操作。</li>
+</ol>
+
+<h3 id="section-11">练习16 读写文件</h3>
+
+<ol>
+  <li>基本文件操作
+    <ul>
+      <li>read</li>
+      <li>write(‘stuff’)</li>
+      <li>close</li>
+      <li>readline</li>
+      <li>truncate</li>
+    </ul>
+  </li>
+  <li>使用一个无实际作用的raw_input来让用户控制程序进程。一个是回车继续，一个是CTRL-C退出，巧妙。</li>
+</ol>
+
+<h3 id="section-12">练习17 更多的文件操作</h3>
+
+<ol>
+  <li>引入了新的os.path模组里面的exists函数，判断该路径下的文件是否存在</li>
+  <li>argv第一个变量永远是script</li>
+  <li>len()函数判断文件的字节长度</li>
+  <li>调用，exists(文件名)；返回指，True，False,如果不存在，就创建一个文件</li>
+  <li>通过rew_input()用户控制流程</li>
+  <li>open(文件名,’w’)用写的方式打开文件</li>
+  <li>.write（）写入文件</li>
+  <li>两个文件close()</li>
+</ol>
+
+<h3 id="section-13">练习18 函数</h3>
+<ol>
+  <li>函数的定义方法,def 函数名(参数)：冒号结尾，下一行是函数主题，前面要缩进</li>
+  <li>*args，这里的*指的是任意个数的参数。</li>
+  <li>arg1, arg2 = args,解包的时候没有*了</li>
+  <li>参数也可以是明确的几个，或者1个，或者没有参数</li>
+</ol>
+
+<h3 id="section-14">练习19 函数的参数传递方式</h3>
+<ol>
+  <li>可以直接在()里面给出数字</li>
+  <li>可以是两个变量</li>
+  <li>可以是运算式</li>
+  <li>可以是变量的运算式</li>
+</ol>
+
+<h3 id="section-15">练习20 函数和文件操作</h3>
+<ol>
+  <li>seek()控制指针位置,(0)代表回到开头位置</li>
+  <li>readline()读完一行之后，指针跳到下一行开头.</li>
+</ol>
+
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="https://Hugo1030.github.io/tech/how-to-create-gitbook/" class="btn" title="Gitbook简易配置手册">向前</a>
+      
+      
+        <a href="https://Hugo1030.github.io/articles/my-daylife-in-spaceship/" class="btn" title="ch2 - 我的飞船记趣">向后</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2017 沥川. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://github.com/hugo1030" title="沥川 on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="https://Hugo1030.github.io/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'https://Hugo1030.github.io';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://Hugo1030.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="https://Hugo1030.github.io/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

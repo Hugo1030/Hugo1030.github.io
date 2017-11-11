@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://Hugo1030.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://Hugo1030.github.io/" rel="alternate" type="text/html" /><updated>2017-11-11T09:49:43+08:00</updated><id>https://Hugo1030.github.io/</id><title type="html">沥川</title><subtitle>士不可不弘毅</subtitle><entry><title type="html">去做不可能的事</title><link href="https://Hugo1030.github.io/article/sentiment-to-Py104/" rel="alternate" type="text/html" title="去做不可能的事" /><published>2017-11-07T00:00:00+08:00</published><updated>2017-11-07T00:00:00+08:00</updated><id>https://Hugo1030.github.io/article/sentiment-to-Py104</id><content type="html" xml:base="https://Hugo1030.github.io/article/sentiment-to-Py104/">&lt;h2 id=&quot;changelog&quot;&gt;Changelog&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;2017-11-08 创建&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>沥川</name><email>yzhjsw520@gmail.com</email></author><summary type="html">Py104 结业感悟</summary></entry><entry><title type="html">吴恩达《神经网络和深度学习》课程笔记（3）– 神经网络基础之Python与向量化</title><link href="https://Hugo1030.github.io/tech/deeplearning-week3/" rel="alternate" type="text/html" title="吴恩达《神经网络和深度学习》课程笔记（3）-- 神经网络基础之Python与向量化" /><published>2017-09-24T00:00:00+08:00</published><updated>2017-09-24T00:00:00+08:00</updated><id>https://Hugo1030.github.io/tech/deeplearning-week3</id><content type="html" xml:base="https://Hugo1030.github.io/tech/deeplearning-week3/">&lt;p&gt;上节课我们主要介绍了逻辑回归，以输出概率的形式来处理二分类问题。我们介绍了逻辑回归的Cost function表达式，并使用梯度下降算法来计算最小化Cost function时对应的参数w和b。通过计算图的方式来讲述了神经网络的正向传播和反向传播两个过程。本节课我们将来探讨Python和向量化的相关知识。&lt;/p&gt;
+
+&lt;h3 id=&quot;vectorization&quot;&gt;1. Vectorization&lt;/h3&gt;
+&lt;p&gt;深度学习算法中，数据量很大，在程序中应该尽量减少使用loop循环语句，而可以使用向量运算来提高程序运行速度。&lt;/p&gt;
+
+&lt;p&gt;向量化（Vectorization）就是利用矩阵运算的思想，大大提高运算速度。例如下面所示在Python中使用向量化要比使用循环计算速度快得多。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import numpy as np
+import time
+
+a = np.random.rand(1000000)
+b = np.random.rand(1000000)
+
+tic = time.time()
+c = np.dot(a,b)
+toc = time.time()
+
+print(c)
+print(&quot;Vectorized version:&quot; + str(1000*(toc-tic)) + &quot;ms&quot;)
+
+c = 0
+tic = time.time()
+for i in range(1000000):
+	c += a[i]*b[i]
+toc = time.time()
+
+print(c)
+print(&quot;for loop:&quot; + str(1000*(toc-tic)) + &quot;ms&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;输出结果类似于：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;250031.204952
+Vectorized version:1.09100341796875ms
+250031.204952
+for loop:482.65600204467773ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;从程序运行结果上来看，该例子使用for循环运行时间是使用向量运算运行时间的约300倍。因此，深度学习算法中，使用向量化矩阵运算的效率要高得多。&lt;/p&gt;
+
+&lt;p&gt;为了加快深度学习神经网络运算速度，可以使用比CPU运算能力更强大的GPU。事实上，GPU和CPU都有并行指令（parallelization instructions），称为Single Instruction Multiple Data（SIMD）。SIMD是单指令多数据流，能够复制多个操作数，并把它们打包在大型寄存器的一组指令集。SIMD能够大大提高程序运行速度，例如python的numpy库中的内建函数（built-in function）就是使用了SIMD指令。相比而言，GPU的SIMD要比CPU更强大一些。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/v2-29f79857ebf4c76becffea83279b0bcc_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;more-vectorization-examples&quot;&gt;2. More Vectorization Examples&lt;/h3&gt;
+&lt;p&gt;上一部分我们讲了应该尽量避免使用for循环而使用向量化矩阵运算。在python的numpy库中，我们通常使用np.dot()函数来进行矩阵运算。下面两张图是向量化的例子：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/v2-11795964ce7245aae1b9a7e2d6c1928e_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们将向量化的思想使用在逻辑回归算法上，尽可能减少for循环，而只使用矩阵运算。值得注意的是，算法最顶层的迭代训练的for循环是不能替换的。而每次迭代过程对J，dw，b的计算是可以直接使用矩阵运算。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/v2-f272c74c747ca085470884048f54e978_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;vectorizing-logistic-regression&quot;&gt;3. Vectorizing Logistic Regression&lt;/h3&gt;
+&lt;p&gt;在《神经网络与深度学习》课程笔记（2）中我们介绍过，整个训练样本构成的输入矩阵X的维度是（ n_x  ，m），权重矩阵w的维度是（ n_x ，1），b是一个常数值，而整个训练样本构成的输出矩阵Y的维度为（1，m）。利用向量化的思想，所有m个样本的线性输出Z可以用矩阵表示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=Z%3Dw%5ETX%2Bb&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在python的numpy库中可以表示为：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Z = np.dot(w.T,X) + b
+A = sigmoid(Z)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;其中，w.T表示w的转置。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/v2-e59de020e6f5523e37a9f2ef78aab8ba_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这样，我们就能够使用向量化矩阵运算代替for循环，对所有m个样本同时运算，大大提高了运算速度。&lt;/p&gt;
+
+&lt;h3 id=&quot;vectorizing-logistic-regressions-gradient-output&quot;&gt;4. Vectorizing Logistic Regression’s Gradient Output&lt;/h3&gt;
+&lt;p&gt;再来看逻辑回归中的梯度下降算法如何转化为向量化的矩阵形式。对于所有m个样本，dZ的维度是（1，m），可表示为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=dZ%3DA-Y&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;db可表示为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=db%3D%5Cfrac1m+%5Csum_%7Bi%3D1%7D%5Emdz%5E%7B%28i%29%7D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;对应的程序为：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;db = 1/m*np.sum(dZ)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;dw可表示为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=dw%3D%5Cfrac1m+X%5Ccdot+dZ%5ET&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;对应的程序为：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dw = 1/m*np.dot(X,dZ.T)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/v2-321093e317292067dadc9f254eba2b15_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这样，我们把整个逻辑回归中的for循环尽可能用矩阵运算代替，对于单次迭代，梯度下降算法流程如下所示：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Z = np.dot(w.T,X) + b
+A = sigmoid(Z)
+dZ = A-Y
+dw = 1/m*np.dot(X,dZ.T)
+db = 1/m*np.sum(dZ)
+
+w = w - alpha*dw
+b = b - alpha*db
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;其中，alpha是学习因子，决定w和b的更新速度。上述代码只是对单次训练更新而言的，外层还需要一个for循环，表示迭代次数。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-9b75a3dc671b767e98d3475602db61fb_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;broadcasting-in-python&quot;&gt;5. Broadcasting in Python&lt;/h3&gt;
+
+&lt;p&gt;下面介绍使用python的另一种技巧：广播（Broadcasting）。python中的广播机制可由下面四条表示：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;让所有输入数组都向其中shape最长的数组看齐，shape中不足的部分都通过在前面加1补齐&lt;/li&gt;
+  &lt;li&gt;输出数组的shape是输入数组shape的各个轴上的最大值&lt;/li&gt;
+  &lt;li&gt;如果输入数组的某个轴和输出数组的对应轴的长度相同或者其长度为1时，这个数组能够用来计算，否则出错&lt;/li&gt;
+  &lt;li&gt;当输入数组的某个轴的长度为1时，沿着此轴运算时都用此轴上的第一组值&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;简而言之，就是python中可以对不同维度的矩阵进行四则混合运算，但至少保证有一个维度是相同的。下面给出几个广播的例子，具体细节可参阅python的相关手册，这里就不赘述了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-ab58055ecc749f6493156d16b8691cf3_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-7b41ac86f537bea2b1a8864cc63536c3_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-1ca8d9a02a38a014847e55c234334b97_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;值得一提的是，在python程序中为了保证矩阵运算正确，可以使用reshape()函数来对矩阵设定所需的维度。这是一个很好且有用的习惯。&lt;/p&gt;
+
+&lt;h3 id=&quot;a-note-on-pythonnumpy-vectors&quot;&gt;6. A note on python/numpy vectors&lt;/h3&gt;
+&lt;p&gt;接下来我们将总结一些python的小技巧，避免不必要的code bug。&lt;/p&gt;
+
+&lt;p&gt;python中，如果我们用下列语句来定义一个向量：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a = np.random.randn(5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这条语句生成的a的维度是（5，）。它既不是行向量也不是列向量，我们把a叫做rank 1 array。这种定义会带来一些问题。例如我们对a进行转置，还是会得到a本身。所以，如果我们要定义（5，1）的列向量或者（1，5）的行向量，最好使用下来标准语句，避免使用rank 1 array。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a = np.random.randn(5,1)
+b = np.random.randn(1,5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;除此之外，我们还可以使用assert语句对向量或数组的维度进行判断，例如&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;assert(a.shape == (5,1))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;assert会对内嵌语句进行判断，即判断a的维度是不是（5，1）的。如果不是，则程序在此处停止。使用assert语句也是一种很好的习惯，能够帮助我们及时检查、发现语句是否正确。&lt;/p&gt;
+
+&lt;p&gt;另外，还可以使用reshape函数对数组设定所需的维度：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a.reshape((5,1))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/v2-46eead267bf45c47046ff66cdcc070f4_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;quick-tour-of-jupyteripython-notebooks&quot;&gt;7. Quick tour of Jupyter/iPython Notebooks&lt;/h3&gt;
+
+&lt;p&gt;Jupyter notebook（又称IPython notebook）是一个交互式的笔记本，支持运行超过40种编程语言。本课程所有的编程练习题都将在Jupyter notebook上进行，使用的语言是python。&lt;/p&gt;
+
+&lt;h3 id=&quot;explanation-of-logistic-regression-cost-functionoptional&quot;&gt;8. Explanation of logistic regression cost function(optional)&lt;/h3&gt;
+&lt;p&gt;在上一节课的笔记中，我们介绍过逻辑回归的Cost function。接下来我们将简要解释这个Cost function是怎么来的。&lt;/p&gt;
+
+&lt;p&gt;首先，预测输出 \hat y 的表达式可以写成：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=hat+y%3D%5Csigma%28w%5ETx%2Bb%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其中， &lt;img src=&quot;http://www.zhihu.com/equation?tex=%5Csigma%28z%29%3D%5Cfrac%7B1%7D%7B1%2Bexp%28-z%29%7D&quot; alt=&quot;&quot; /&gt;。 \hat y 可以看成是预测输出为正类（+1）的概率：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=%5Chat+y%3DP%28y%3D1%7Cx%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;那么，当y=1时：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=p%28y%7Cx%29%3D%5Chat+y&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当y=0时：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=p%28y%7Cx%29%3D1-%5Chat+y&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们把上面两个式子整合到一个式子中，得到：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=P%28y%7Cx%29%3D%5Chat+y%5Ey%281-%5Chat+y%29%5E%7B%281-y%29%7D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;由于log函数的单调性，可以对上式P(y&lt;/td&gt;
+      &lt;td&gt;x)进行log处理：&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=log%5C+P%28y%7Cx%29%3Dlog%5C+%5Chat+y%5Ey%281-%5Chat+y%29%5E%7B%281-y%29%7D%3Dy%5C+log%5C+%5Chat+y%2B%281-y%29log%281-%5Chat+y%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;我们希望上述概率P(y&lt;/td&gt;
+      &lt;td&gt;x)越大越好，对上式加上负号，则转化成了单个样本的Loss function，越小越好，也就得到了我们之前介绍的逻辑回归的Loss function形式。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=L%3D-%28y%5C+log%5C+%5Chat+y%2B%281-y%29log%281-%5Chat+y%29%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果对于所有m个训练样本，假设样本之间是独立同分布的（iid），我们希望总的概率越大越好：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=max%5C+%5Cprod_%7Bi%3D1%7D%5Em%5C+P%28y%5E%7B%28i%29%7D%7Cx%5E%7B%28i%29%7D%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;同样引入log函数，加上负号，将上式转化为Cost function：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=J%28w%2Cb%29%3D-%5Cfrac1m%5Csum_%7Bi%3D1%7D%5EmL%28%5Chat+y%5E%7B%28i%29%7D%2Cy%5E%7B%28i%29%7D%29%3D-+%5Cfrac1m%5Csum_%7Bi%3D1%7D%5Emy%5E%7B%28i%29%7D%5C+log%5C+%5Chat+y%5E%7B%28i%29%7D%2B%281-y%5E%7B%28i%29%7D%29log%281-%5Chat+y%5E%7B%28i%29%7D%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上式中， \frac1m 表示对所有m个样本的Cost function求平均，是缩放因子。&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;9. Summary&lt;/h3&gt;
+&lt;p&gt;本节课我们主要介绍了神经网络基础——python和向量化。在深度学习程序中，使用向量化和矩阵运算的方法能够大大提高运行速度，节省时间。以逻辑回归为例，我们将其算法流程包括梯度下降转换为向量化的形式。同时，我们也介绍了python的相关编程方法和技巧。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;注明&lt;/h3&gt;
+&lt;p&gt;文章中的内容大都来自Coursera上的课程材料&lt;/p&gt;
+
+&lt;h3 id=&quot;changelog&quot;&gt;Changelog&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;2017-09-24 创建&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>沥川</name><email>yzhjsw520@gmail.com</email></author><category term="deeplearning" /><summary type="html">神经网络基础之Python与向量化</summary></entry><entry><title type="html">吴恩达《神经网络和深度学习》课程笔记（2）– 神经网络基础之逻辑回归</title><link href="https://Hugo1030.github.io/tech/deeplearning-week2/" rel="alternate" type="text/html" title="吴恩达《神经网络和深度学习》课程笔记（2）-- 神经网络基础之逻辑回归" /><published>2017-09-24T00:00:00+08:00</published><updated>2017-09-24T00:00:00+08:00</updated><id>https://Hugo1030.github.io/tech/deeplearning-week2</id><content type="html" xml:base="https://Hugo1030.github.io/tech/deeplearning-week2/">&lt;p&gt;上节课我们主要对深度学习（Deep Learning）的概念做了简要的概述。我们先从房价预测的例子出发，建立了标准的神经网络（Neural Network）模型结构。然后从监督式学习入手，介绍了Standard NN，CNN和RNN三种不同的神经网络模型。接着介绍了两种不同类型的数据集：Structured Data和Unstructured Data。最后，我们解释了近些年来深度学习性能优于传统机器学习的原因，归结为三个因素：Data，Computation和Algorithms。本节课，我们将开始介绍神经网络的基础：逻辑回归（Logistic Regression）。通过对逻辑回归模型结构的分析，为我们后面学习神经网络模型打下基础。&lt;/p&gt;
+
+&lt;h3 id=&quot;binary-classification&quot;&gt;1. Binary Classification&lt;/h3&gt;
+&lt;p&gt;我们知道逻辑回归模型一般用来解决二分类（Binary Classification）问题。二分类就是输出y只有{0,1}两个离散值（也有{-1,1}的情况）。我们以一个图像识别问题为例，判断图片中是否有猫存在，0代表noncat，1代表cat。主要是通过这个例子简要介绍神经网络模型中一些标准化的、有效率的处理方法和notations。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/v2-a0ec2786f15243299ba96df7bb1ec332_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如上图所示，这是一个典型的二分类问题。一般来说，彩色图片包含RGB三个通道。例如该cat图片的尺寸为（64，64，3）。在神经网络模型中，我们首先要将图片输入x（维度是（64，64，3））转化为一维的特征向量（feature vector）。方法是每个通道一行一行取，再连接起来。由于64x64x3=12288，则转化后的输入特征向量维度为（12288，1）。此特征向量x是列向量，维度一般记为 n_x 。&lt;/p&gt;
+
+&lt;p&gt;如果训练样本共有m张图片，那么整个训练样本X组成了矩阵，维度是（ n_x ，m）。注意，这里矩阵X的行 n_x  代表了每个样本 x^{(i)}  特征个数，列m代表了样本个数。这里，Andrew解释了X的维度之所以是（ n_x ，m）而不是（m， n_x ）的原因是为了之后矩阵运算的方便。算是Andrew给我们的一个小小的经验吧。而所有训练样本的输出Y也组成了一维的行向量，写成矩阵的形式后，它的维度就是（1，m）。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/v2-4462439e2b0db969c6f19022b84fc1e1_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Andrew还给出了本课程中关于深度学习一些常用的标准符号（notations），如下图所示。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/v2-f204944498745eff5a29d3c0bd72be7d_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;logistic-regression&quot;&gt;2. Logistic Regression&lt;/h3&gt;
+&lt;p&gt;接下来我们就来介绍如何使用逻辑回归来解决二分类问题。逻辑回归中，预测值 &lt;img src=&quot;http://www.zhihu.com/equation?tex=%5Chat+h%3DP%28y%3D1%5C+%7C%5C+x%29&quot; alt=&quot;&quot; /&gt; 表示为1的概率，取值范围在[0,1]之间。这是其与二分类模型不同的地方。使用线性模型，引入参数w和b。权重w的维度是（ &lt;img src=&quot;http://www.zhihu.com/equation?tex=n_x&quot; alt=&quot;&quot; /&gt; ，1），b是一个常数项。这样，逻辑回归的线性预测输出可以写成：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=%5Chat+y+%3D+w%5ETx%2Bb&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;值得注意的是，很多其它机器学习资料中，可能把常数b当做 w_0 处理，并引入 x_0=1 。这样从维度上来看，x和w都会增加一维。但在本课程中，为了简化计算和便于理解，Andrew建议还是使用上式这种形式将w和b分开比较好。&lt;/p&gt;
+
+&lt;p&gt;上式的线性输出区间为整个实数范围，而逻辑回归要求输出范围在[0,1]之间，所以还需要对上式的线性函数输出进行处理。方法是引入Sigmoid函数，让输出限定在[0,1]之间。这样，逻辑回归的预测输出就可以完整写成：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=%5Chat+y+%3D+Sigmoid%28w%5ETx%2Bb%29%3D%5Csigma%28w%5ETx%2Bb%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Sigmoid函数是一种非线性的S型函数，输出被限定在[0,1]之间，通常被用在神经网络中当作激活函数（Activation function）使用。Sigmoid函数的表达式和曲线如下所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=Sigmoid%28z%29%3D%5Cfrac%7B1%7D%7B1%2Be%5E%7B-z%7D%7D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/v2-9bef04e41b7824f6b03e932a72da9e1e_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从Sigmoid函数曲线可以看出，当z值很大时，函数值趋向于1；当z值很小时，函数值趋向于0。且当z=0时，函数值为0.5。还有一点值得注意的是，Sigmoid函数的一阶导数可以用其自身表示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=%5Csigma%27%28z%29%3D%5Csigma%28z%29%281-%5Csigma%28z%29%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这样，通过Sigmoid函数，就能够将逻辑回归的输出限定在[0,1]之间了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/v2-15d7cff3e63c6bb6cc99699312b3ccc5_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;logistic-regression-cost-function&quot;&gt;3. Logistic Regression Cost Function&lt;/h3&gt;
+&lt;p&gt;逻辑回归中，w和b都是未知参数，需要反复训练优化得到。因此，我们需要定义一个cost function，包含了参数w和b。通过优化cost function，当cost function取值最小时，得到对应的w和b。&lt;/p&gt;
+
+&lt;p&gt;提一下，对于m个训练样本，我们通常使用上标来表示对应的样本。例如 (x^{(i)},y^{(i)}) 表示第i个样本。&lt;/p&gt;
+
+&lt;p&gt;如何定义所有m个样本的cost function呢？先从单个样本出发，我们希望该样本的预测值 \hat y 与真实值越相似越好。我们把单个样本的cost function用Loss function来表示，根据以往经验，如果使用平方错误（squared error）来衡量，如下所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=L%28%5Chat+y%2Cy%29%3D%5Cfrac12%28%5Chat+y-y%29%5E2&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是，对于逻辑回归，我们一般不使用平方错误来作为Loss function。原因是这种Loss function一般是non-convex的。non-convex函数在使用梯度下降算法时，容易得到局部最小值（local minumum），即局部最优化。而我们最优化的目标是计算得到全局最优化（Global optimization）。因此，我们一般选择的Loss function应该是convex的。&lt;/p&gt;
+
+&lt;p&gt;Loss function的原则和目的就是要衡量预测输出 \hat y 与真实样本输出y的接近程度。平方错误其实也可以，只是它是non-convex的，不利于使用梯度下降算法来进行全局优化。因此，我们可以构建另外一种Loss function，且是convex的，如下所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=L%28%5Chat+y%2Cy%29%3D-%28ylog%5C+%5Chat+y%2B%281-y%29log%5C+%281-%5Chat+y%29%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们来分析一下这个Loss function，它是衡量错误大小的，Loss function越小越好。&lt;/p&gt;
+
+&lt;p&gt;当y=1时， L(\hat y,y)=-log\ \hat y 。如果 \hat y 越接近1， L(\hat y,y)\approx 0 ，表示预测效果越好；如果 \hat y  越接近0， L(\hat y,y)\approx +\infty ，表示预测效果越差。这正是我们希望Loss function所实现的功能。&lt;/p&gt;
+
+&lt;p&gt;当y=0时， L(\hat y,y)=-log\ (1-\hat y) 。如果 \hat y 越接近0， L(\hat y,y)\approx 0 ，表示预测效果越好；如果 \hat y 越接近1， L(\hat y,y)\approx +\infty ，表示预测效果越差。这也正是我们希望Loss function所实现的功能。&lt;/p&gt;
+
+&lt;p&gt;因此，这个Loss function能够很好地反映预测输出 \hat y 与真实样本输出y的接近程度，越接近的话，其Loss function值越小。而且这个函数是convex的。上面我们只是简要地分析为什么要使用这个Loss function，后面的课程中，我们将详细推导该Loss function是如何得到的。并不是凭空捏造的哦。。。&lt;/p&gt;
+
+&lt;p&gt;还要提一点的是，上面介绍的Loss function是针对单个样本的。那对于m个样本，我们定义Cost function，Cost function是m个样本的Loss function的平均值，反映了m个样本的预测输出 \hat y 与真实样本输出y的平均接近程度。Cost function可表示为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=J%28w%2Cb%29%3D%5Cfrac1m%5Csum_%7Bi%3D1%7D%5EmL%28%5Chat+y%5E%7B%28i%29%7D%2Cy%5E%7B%28i%29%7D%29%3D-%5Cfrac1m%5Csum_%7Bi%3D1%7D%5Em%5By%5E%7B%28i%29%7Dlog%5C+%5Chat+y%5E%7B%28i%29%7D%2B%281-y%5E%7B%28i%29%7D%29log%5C+%281-%5Chat+y%5E%7B%28i%29%7D%29%5D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Cost function已经推导出来了，Cost function是关于待求系数w和b的函数。我们的目标就是迭代计算出最佳的w和b值，最小化Cost function，让Cost function尽可能地接近于零。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-8ea0ff2146b3f3074559e790cdfb7887_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其实逻辑回归问题可以看成是一个简单的神经网络，只包含一个神经元。这也是我们这里先介绍逻辑回归的原因。&lt;/p&gt;
+
+&lt;h3 id=&quot;gradient-descent&quot;&gt;4. Gradient Descent&lt;/h3&gt;
+&lt;p&gt;我们已经掌握了Cost function的表达式，接下来将使用梯度下降（Gradient Descent）算法来计算出合适的w和b值，从而最小化m个训练样本的Cost function，即J(w,b)。&lt;/p&gt;
+
+&lt;p&gt;由于J(w,b)是convex function，梯度下降算法是先随机选择一组参数w和b值，然后每次迭代的过程中分别沿着w和b的梯度（偏导数）的反方向前进一小步，不断修正w和b。每次迭代更新w和b后，都能让J(w,b)更接近全局最小值。梯度下降的过程如下图所示。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-af92168ab0203accf6a9a1a0472be78f_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;梯度下降算法每次迭代更新，w和b的修正表达式为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=w%3A%3Dw-%5Calpha%5Cfrac%7B%5Cpartial+J%28w%2Cb%29%7D%7B%5Cpartial+w%7D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=b%3A%3Db-%5Calpha%5Cfrac%7B%5Cpartial+J%28w%2Cb%29%7D%7B%5Cpartial+b%7D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上式中， \alpha 是学习因子（learning rate），表示梯度下降的步进长度。 \alpha 越大，w和b每次更新的“步伐”更大一些； \alpha 越小，w和b每次更新的“步伐”更小一些。在程序代码中，我们通常使用dw来表示 \frac{\partial J(w,b)}{\partial w} ，用db来表示 \frac{\partial J(w,b)}{\partial b} 。微积分里， \frac{df}{dx} 表示对单一变量求导数， \frac{\partial f}{\partial x} 表示对多个变量中某个变量求偏导数。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/v2-cc01e1b783d37e488b702f775cc092b8_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;derivatives&quot;&gt;5. Derivatives&lt;/h3&gt;
+&lt;p&gt;这一部分的内容非常简单，Andrew主要是给对微积分、求导数不太清楚的同学介绍的。梯度或者导数一定程度上可以看成是斜率。关于求导数的方法这里就不再赘述了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-d7a9c02ebdff3945eb3f9d061f638e5b_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;more-derivative-examples&quot;&gt;6. More Derivative Examples&lt;/h3&gt;
+
+&lt;p&gt;Andrew给出了更加复杂的求导数的例子：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/v2-e8e9147f19227e2f582b1a3be28fb22e_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/v2-27e850d8fde086f5bcaf0a7f69abb728_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;computation-graph&quot;&gt;7. Computation graph&lt;/h3&gt;
+&lt;p&gt;整个神经网络的训练过程实际上包含了两个过程：正向传播（Forward Propagation）和反向传播（Back Propagation）。正向传播是从输入到输出，由神经网络计算得到预测输出的过程；反向传播是从输出到输入，对参数w和b计算梯度的过程。下面，我们用计算图（Computation graph）的形式来理解这两个过程。&lt;/p&gt;
+
+&lt;p&gt;举个简单的例子，假如Cost function为J(a,b,c)=3(a+bc)，包含a，b，c三个变量。我们用u表示bc，v表示a+u，则J=3v。它的计算图可以写成如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/v2-338d8deceac4f9ed04e1436424a8af30_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;令a=5，b=3，c=2，则u=bc=6，v=a+u=11，J=3v=33。计算图中，这种从左到右，从输入到输出的过程就对应着神经网络或者逻辑回归中输入与权重经过运算计算得到Cost function的正向过程。&lt;/p&gt;
+
+&lt;h3 id=&quot;derivatives-with-a-computation-graph&quot;&gt;8. Derivatives with a Computation Graph&lt;/h3&gt;
+&lt;p&gt;上一部分介绍的是计算图的正向传播（Forward Propagation），下面我们来介绍其反向传播（Back Propagation），即计算输出对输入的偏导数。&lt;/p&gt;
+
+&lt;p&gt;还是上个计算图的例子，输入参数有3个，分别是a，b，c。&lt;/p&gt;
+
+&lt;p&gt;首先计算J对参数a的偏导数。从计算图上来看，从右到左，J是v的函数，v是a的函数。则利用求导技巧，可以得到：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+J%7D%7B%5Cpartial+a%7D%3D%5Cfrac%7B%5Cpartial+J%7D%7B%5Cpartial+v%7D%5Ccdot+%5Cfrac%7B%5Cpartial+v%7D%7B%5Cpartial+a%7D%3D3%5Ccdot+1%3D3&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;根据这种思想，然后计算J对参数b的偏导数。从计算图上来看，从右到左，J是v的函数，v是u的函数，u是b的函数。可以推导：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+J%7D%7B%5Cpartial+b%7D%3D%5Cfrac%7B%5Cpartial+J%7D%7B%5Cpartial+v%7D%5Ccdot+%5Cfrac%7B%5Cpartial+v%7D%7B%5Cpartial+u%7D%5Ccdot+%5Cfrac%7B%5Cpartial+u%7D%7B%5Cpartial+b%7D%3D3%5Ccdot+1%5Ccdot+c%3D3%5Ccdot+1%5Ccdot+2%3D6&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最后计算J对参数c的偏导数。仍从计算图上来看，从右到左，J是v的函数，v是u的函数，u是c的函数。可以推导：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+J%7D%7B%5Cpartial+c%7D%3D%5Cfrac%7B%5Cpartial+J%7D%7B%5Cpartial+v%7D%5Ccdot+%5Cfrac%7B%5Cpartial+v%7D%7B%5Cpartial+u%7D%5Ccdot+%5Cfrac%7B%5Cpartial+u%7D%7B%5Cpartial+c%7D%3D3%5Ccdot+1%5Ccdot+b%3D3%5Ccdot+1%5Ccdot+3%3D9&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;为了统一格式，在程序代码中，我们使用da，db，dc来表示J对参数a，b，c的偏导数。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/v2-aa0925694fd03257e166f447cc32231e_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-c43a29b0aaf069fee4b4f968c4e110f7_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;logistic-regression-gradient-descent&quot;&gt;9. Logistic Regression Gradient Descent&lt;/h3&gt;
+
+&lt;p&gt;现在，我们将对逻辑回归进行梯度计算。对单个样本而言，逻辑回归Loss function表达式如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=z%3Dw%5ETx%2Bb&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=%5Chat+y%3Da%3D%5Csigma%28z%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=L%28a%2Cy%29%3D-%28ylog%28a%29%2B%281-y%29log%281-a%29%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;首先，该逻辑回归的正向传播过程非常简单。根据上述公式，例如输入样本x有两个特征 (x_1,x_2) ，相应的权重w维度也是2，即 (w_1,w_2) 。则 z=w_1x_1+w_2x_2+b ，最后的Loss function如下所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-95f347eb8996b0f8125f0493e28390e3_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后，计算该逻辑回归的反向传播过程，即由Loss function计算参数w和b的偏导数。推导过程如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=da%3D%5Cfrac%7B%5Cpartial+L%7D%7B%5Cpartial+a%7D%3D-%5Cfrac+ya%2B%5Cfrac%7B1-y%7D%7B1-a%7D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=dz%3D%5Cfrac%7B%5Cpartial+L%7D%7B%5Cpartial+z%7D%3D%5Cfrac%7B%5Cpartial+L%7D%7B%5Cpartial+a%7D%5Ccdot+%5Cfrac%7B%5Cpartial+a%7D%7B%5Cpartial+z%7D%3D%28-%5Cfrac+ya%2B%5Cfrac%7B1-y%7D%7B1-a%7D%29%5Ccdot+a%281-a%29%3Da-y&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;知道了dz之后，就可以直接对 w_1 ， w_2 和b进行求导了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=dw_1%3D%5Cfrac%7B%5Cpartial+L%7D%7B%5Cpartial+w_1%7D%3D%5Cfrac%7B%5Cpartial+L%7D%7B%5Cpartial+z%7D%5Ccdot+%5Cfrac%7B%5Cpartial+z%7D%7B%5Cpartial+w_1%7D%3Dx_1%5Ccdot+dz%3Dx_1%28a-y%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=dw_2%3D%5Cfrac%7B%5Cpartial+L%7D%7B%5Cpartial+w_2%7D%3D%5Cfrac%7B%5Cpartial+L%7D%7B%5Cpartial+z%7D%5Ccdot+%5Cfrac%7B%5Cpartial+z%7D%7B%5Cpartial+w_2%7D%3Dx_2%5Ccdot+dz%3Dx_2%28a-y%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=db%3D%5Cfrac%7B%5Cpartial+L%7D%7B%5Cpartial+b%7D%3D%5Cfrac%7B%5Cpartial+L%7D%7B%5Cpartial+z%7D%5Ccdot+%5Cfrac%7B%5Cpartial+z%7D%7B%5Cpartial+b%7D%3D1%5Ccdot+dz%3Da-y&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;则梯度下降算法可表示为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=w_1%3A%3Dw_1-%5Calpha%5C+dw_1&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=w_2%3A%3Dw_2-%5Calpha%5C+dw_2&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=b%3A%3Db-%5Calpha%5C+db&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/v2-e5da91fcdf8bb1eeff866e79a9309c01_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;gradient-descent-on-m-examples&quot;&gt;10. Gradient descent on m examples&lt;/h3&gt;
+&lt;p&gt;上一部分讲的是对单个样本求偏导和梯度下降。如果有m个样本，其Cost function表达式如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=z%5E%7B%28i%29%7D%3Dw%5ETx%5E%7B%28i%29%7D%2Bb&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=%5Chat+y%5E%7B%28i%29%7D%3Da%5E%7B%28i%29%7D%3D%5Csigma%28z%5E%7B%28i%29%7D%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=J%28w%2Cb%29%3D%5Cfrac1m%5Csum_%7Bi%3D1%7D%5EmL%28%5Chat+y%5E%7B%28i%29%7D%2Cy%5E%7B%28i%29%7D%29%3D-%5Cfrac1m%5Csum_%7Bi%3D1%7D%5Em%5By%5E%7B%28i%29%7Dlog%5C+%5Chat+y%5E%7B%28i%29%7D%2B%281-y%5E%7B%28i%29%7D%29log%5C+%281-%5Chat+y%5E%7B%28i%29%7D%29%5D&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Cost function关于w和b的偏导数可以写成和平均的形式：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=dw_1%3D%5Cfrac1m%5Csum_%7Bi%3D1%7D%5Emx_1%5E%7B%28i%29%7D%28a%5E%7B%28i%29%7D-y%5E%7B%28i%29%7D%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=dw_2%3D%5Cfrac1m%5Csum_%7Bi%3D1%7D%5Emx_2%5E%7B%28i%29%7D%28a%5E%7B%28i%29%7D-y%5E%7B%28i%29%7D%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=db%3D%5Cfrac1m%5Csum_%7Bi%3D1%7D%5Em%28a%5E%7B%28i%29%7D-y%5E%7B%28i%29%7D%29&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这样，每次迭代中w和b的梯度有m个训练样本计算平均值得到。其算法流程图如下所示：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;J=0; dw1=0; dw2=0; db=0;
+for i = 1 to m
+	z(i) = wx(i)+b;
+	a(i) = sigmoid(z(i));
+	J += -[y(i)log(a(i))+(1-y(i)）log(1-a(i));
+	dz(i) = a(i)-y(i);
+	dw1 += x1(i)dz(i);
+	dw2 += x2(i)dz(i);
+	db += dz(i);
+J /= m;
+dw1 /= m;
+dw2 /= m;
+db /= m;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;经过每次迭代后，根据梯度下降算法，w和b都进行更新：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=w_1%3A%3Dw_1-%5Calpha%5C+dw_1&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=w_2%3A%3Dw_2-%5Calpha%5C+dw_2&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.zhihu.com/equation?tex=b%3A%3Db-%5Calpha%5C+db&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这样经过n次迭代后，整个梯度下降算法就完成了。&lt;/p&gt;
+
+&lt;p&gt;值得一提的是，在上述的梯度下降算法中，我们是利用for循环对每个样本进行dw1，dw2和db的累加计算最后再求平均数的。在深度学习中，样本数量m通常很大，使用for循环会让神经网络程序运行得很慢。所以，我们应该尽量避免使用for循环操作，而使用矩阵运算，能够大大提高程序运行速度。关于vectorization的内容我们放在下次笔记中再说。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/v2-5b3835c24c70e644a35a0eb6e2762228_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;11. Summary&lt;/h3&gt;
+
+&lt;p&gt;本节课的内容比较简单，主要介绍了神经网络的基础——逻辑回归。首先，我们介绍了二分类问题，以图片为例，将多维输入x转化为feature vector，输出y只有{0,1}两个离散值。接着，我们介绍了逻辑回归及其对应的Cost function形式。然后，我们介绍了梯度下降算法，并使用计算图的方式来讲述神经网络的正向传播和反向传播两个过程。最后，我们在逻辑回归中使用梯度下降算法，总结出最优化参数w和b的算法流程。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;注明&lt;/h3&gt;
+&lt;p&gt;文章中的内容大都来自Coursera上的课程材料&lt;/p&gt;
+
+&lt;h3 id=&quot;changelog&quot;&gt;Changelog&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;2017-09-24 创建&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>沥川</name><email>yzhjsw520@gmail.com</email></author><category term="deeplearning" /><summary type="html">神经网络基础之逻辑回归</summary></entry><entry><title type="html">吴恩达《神经网络和深度学习》课程笔记（1）– 深度学习概述</title><link href="https://Hugo1030.github.io/tech/deeplearning-week1/" rel="alternate" type="text/html" title="吴恩达《神经网络和深度学习》课程笔记（1）-- 深度学习概述" /><published>2017-09-24T00:00:00+08:00</published><updated>2017-09-24T00:00:00+08:00</updated><id>https://Hugo1030.github.io/tech/deeplearning-week1</id><content type="html" xml:base="https://Hugo1030.github.io/tech/deeplearning-week1/">&lt;h3 id=&quot;what-is-a-neural-network&quot;&gt;一、What is a neural network?&lt;/h3&gt;
+&lt;p&gt;简单来说，深度学习（Deep Learning）就是更复杂的神经网络（Neural Network）。那么，什么是神经网络呢？下面我们将通过一个简单的例子来引入神经网络模型的概念。&lt;/p&gt;
+
+&lt;p&gt;假如我们要建立房价的预测模型，一共有六个房子。我们已知输入x即每个房子的面积（多少尺或者多少平方米），还知道其对应的输出y即每个房子的价格。根据这些输入输出，我们要建立一个函数模型，来预测房价：y=f(x)。首先，我们将已知的六间房子的价格和面积的关系绘制在二维平面上，如下图所示：
+&lt;img src=&quot;https://pic4.zhimg.com/v2-3e292e825a1cdc5368750ec4d37a425f_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;一般地，我们会一条直线来拟合图中这些离散点，即建立房价与面积的线性模型。但是从实际考虑，我们知道价格永远不会是负数。所以，我们对该直线做一点点修正，让它变成折线的形状，当面积小于某个值时，价格始终为零。如下图蓝色折线所示，就是我们建立的房价预测模型。
+&lt;img src=&quot;https://pic4.zhimg.com/v2-23f45aff070f2c619df4c03bb1c17607_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其实这个简单的模型（蓝色折线）就可以看成是一个神经网络，而且几乎是一个最简单的神经网络。我们把该房价预测用一个最简单的神经网络模型来表示，如下图所示：
+&lt;img src=&quot;https://pic1.zhimg.com/v2-3e76fd4bea02973aad1f6917253ac098_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;该神经网络的输入x是房屋面积，输出y是房屋价格，中间包含了一个神经元（neuron），即房价预测函数（蓝色折线）。该神经元的功能就是实现函数f(x)的功能。&lt;/p&gt;
+
+&lt;p&gt;值得一提的是，上图神经元的预测函数（蓝色折线）在神经网络应用中比较常见。我们把这个函数称为ReLU函数，即线性整流函数（Rectified Linear Unit），形如下图所示：
+&lt;img src=&quot;https://pic3.zhimg.com/v2-75a630e1aa79b59992a2d5eb3c48ce72_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上面讲的只是由单个神经元（输入x仅仅是房屋面积一个因素）组成的神经网络，而通常一个大型的神经网络往往由许多神经元组成，就像通过乐高积木搭建复杂物体（例如火车）一样。&lt;/p&gt;
+
+&lt;p&gt;现在，我们把上面举的房价预测的例子变得复杂一些，而不是仅仅使用房屋面积一个判断因素。例如，除了考虑房屋面积（size）之外，我们还考虑卧室数目（#bedrooms）。这两点实际上与家庭成员的个数（family size）有关。还有，房屋的邮政编码（zip code/postal code），代表了该房屋位置的交通便利性，是否需要步行还是开车？即决定了可步行性（walkability）。另外，还有可能邮政编码和地区财富水平（wealth）共同影响了房屋所在地区的学校质量（school quality）。如下图所示，该神经网络共有三个神经元，分别代表了family size，walkability和school quality。每一个神经元都包含了一个ReLU函数（或者其它非线性函数）。那么，根据这个模型，我们可以根据房屋的面积和卧室个数来估计family size，根据邮政编码来估计walkability，根据邮政编码和财富水平来估计school quality。最后，由family size，walkability和school quality等这些人们比较关心的因素来预测最终的房屋价格。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/v2-7a77cdef9b72c8d3e6c7bf36721a7c2e_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这就是基本的神经网络模型结构。在训练的过程中，只要有足够的输入x和输出y，就能训练出较好的神经网络模型，该模型在此类房价预测问题中，能够得到比较准确的结果。&lt;/p&gt;
+
+&lt;h3 id=&quot;supervised-learning-with-neural-networks&quot;&gt;二、Supervised Learning with Neural Networks&lt;/h3&gt;
+
+&lt;p&gt;目前为止，由神经网络模型创造的价值基本上都是基于监督式学习（Supervised Learning）的。监督式学习与非监督式学习本质区别就是是否已知训练样本的输出y。在实际应用中，机器学习解决的大部分问题都属于监督式学习，神经网络模型也大都属于监督式学习。下面我们来看几个监督式学习在神经网络中应用的例子。&lt;/p&gt;
+
+&lt;p&gt;首先，第一个例子还是房屋价格预测。根据训练样本的输入x和输出y，训练神经网络模型，预测房价。第二个例子是线上广告，这是深度学习最广泛、最赚钱的应用之一。其中，输入x是广告和用户个人信息，输出y是用户是否对广告进行点击。神经网络模型经过训练，能够根据广告类型和用户信息对用户的点击行为进行预测，从而向用户提供用户自己可能感兴趣的广告。第三个例子是电脑视觉（computer vision）。电脑视觉是近些年来越来越火的课题，而电脑视觉发展迅速的原因很大程度上是得益于深度学习。其中，输入x是图片像素值，输出是图片所属的不同类别。第四个例子是语音识别（speech recognition）。深度学习可以将一段语音信号辨识为相应的文字信息。第五个例子是智能翻译，例如通过神经网络输入英文，然后直接输出中文。除此之外，第六个例子是自动驾驶。通过输入一张图片或者汽车雷达信息，神经网络通过训练来告诉你相应的路况信息并作出相应的决策。至此，神经网络配合监督式学习，其应用是非常广泛的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-865525d2a25ed0e8cf09b58360deb433_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们应该知道，根据不同的问题和应用场合，应该使用不同类型的神经网络模型。例如上面介绍的几个例子中，对于一般的监督式学习（房价预测和线上广告问题），我们只要使用标准的神经网络模型就可以了。而对于图像识别处理问题，我们则要使用卷积神经网络（Convolution Neural Network），即CNN。而对于处理类似语音这样的序列信号时，则要使用循环神经网络（Recurrent Neural Network），即RNN。还有其它的例如自动驾驶这样的复杂问题则需要更加复杂的混合神经网络模型。&lt;/p&gt;
+
+&lt;p&gt;CNN和RNN是比较常用的神经网络模型。下图给出了Standard NN，Convolutional NN和Recurrent NN的神经网络结构图。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/v2-84d50549ac0e0a6d6730e4f8a98affe6_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;CNN一般处理图像问题，RNN一般处理语音信号。他们的结构是什么意思？如何实现CNN和RNN的结构？这些问题我们将在以后的课程中来深入分析并解决。&lt;/p&gt;
+
+&lt;p&gt;另外，数据类型一般分为两种：Structured Data和Unstructured Data。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-be24e820f52a3cfb97fe5e18c0c2205f_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;简单地说，Structured Data通常指的是有实际意义的数据。例如房价预测中的size，#bedrooms，price等；例如在线广告中的User Age，Ad ID等。这些数据都具有实际的物理意义，比较容易理解。而Unstructured Data通常指的是比较抽象的数据，例如Audio，Image或者Text。以前，计算机对于Unstructured Data比较难以处理，而人类对Unstructured Data却能够处理的比较好，例如我们第一眼很容易就识别出一张图片里是否有猫，但对于计算机来说并不那么简单。现在，值得庆幸的是，由于深度学习和神经网络的发展，计算机在处理Unstructured Data方面效果越来越好，甚至在某些方面优于人类。总的来说，神经网络与深度学习无论对Structured Data还是Unstructured Data都能处理得越来越好，并逐渐创造出巨大的实用价值。我们在之后的学习和实际应用中也将会碰到许多Structured Data和Unstructured Data。&lt;/p&gt;
+
+&lt;h3 id=&quot;why-is-deep-learning-taking-off&quot;&gt;三、Why is Deep Learning taking off？&lt;/h3&gt;
+&lt;p&gt;如果说深度学习和神经网络背后的技术思想已经出现数十年了，那么为什么直到现在才开始发挥作用呢？接下来，我们来看一下深度学习背后的主要动力是什么，方便我们更好地理解并使用深度学习来解决更多问题。&lt;/p&gt;
+
+&lt;p&gt;深度学习为什么这么强大？下面我们用一张图来说明。如下图所示，横坐标x表示数据量（Amount of data），纵坐标y表示机器学习模型的性能表现（Performance）。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/v2-40e32c3411bfcfa57244dcd352ebd974_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上图共有4条曲线。其中，最底下的那条红色曲线代表了传统机器学习算法的表现，例如是SVM，logistic regression，decision tree等。当数据量比较小的时候，传统学习模型的表现是比较好的。但是当数据量很大的时候，其表现很一般，性能基本趋于水平。红色曲线上面的那条黄色曲线代表了规模较小的神经网络模型（Small NN）。它在数据量较大时候的性能优于传统的机器学习算法。黄色曲线上面的蓝色曲线代表了规模中等的神经网络模型（Media NN），它在在数据量更大的时候的表现比Small NN更好。最上面的那条绿色曲线代表更大规模的神经网络（Large NN），即深度学习模型。从图中可以看到，在数据量很大的时候，它的表现仍然是最好的，而且基本上保持了较快上升的趋势。值得一提的是，近些年来，由于数字计算机的普及，人类进入了大数据时代，每时每分，互联网上的数据是海量的、庞大的。如何对大数据建立稳健准确的学习模型变得尤为重要。传统机器学习算法在数据量较大的时候，性能一般，很难再有提升。然而，深度学习模型由于网络复杂，对大数据的处理和分析非常有效。所以，近些年来，在处理海量数据和建立复杂准确的学习模型方面，深度学习有着非常不错的表现。然而，在数据量不大的时候，例如上图中左边区域，深度学习模型不一定优于传统机器学习算法，性能差异可能并不大。&lt;/p&gt;
+
+&lt;p&gt;所以说，现在深度学习如此强大的原因归结为三个因素：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Data&lt;/li&gt;
+  &lt;li&gt;Computation&lt;/li&gt;
+  &lt;li&gt;Algorithms&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其中，数据量的几何级数增加，加上GPU出现、计算机运算能力的大大提升，使得深度学习能够应用得更加广泛。另外，算法上的创新和改进让深度学习的性能和速度也大大提升。举个算法改进的例子，之前神经网络神经元的激活函数是Sigmoid函数，后来改成了ReLU函数。之所以这样更改的原因是对于Sigmoid函数，在远离零点的位置，函数曲线非常平缓，其梯度趋于0，所以造成神经网络模型学习速度变得很慢。然而，ReLU函数在x大于零的区域，其梯度始终为1，尽管在x小于零的区域梯度为0，但是在实际应用中采用ReLU函数确实要比Sigmoid函数快很多。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/v2-9a96aaa81919e35932c352d2fedf1ca9_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;构建一个深度学习的流程如上图右边所示。首先产生Idea，然后将Idea转化为Code，最后进行Experiment。接着根据结果修改Idea，继续这种Idea-&amp;gt;Code-&amp;gt;Experiment的循环，直到最终训练得到表现不错的深度学习网络模型。如果计算速度越快，每一步骤耗时越少，那么上述循环越能高效进行。&lt;/p&gt;
+
+&lt;h3 id=&quot;about-this-course&quot;&gt;四、About this Course&lt;/h3&gt;
+
+&lt;p&gt;这里简单列一下本系列深度学习专项课程有哪些：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/v2-dfe23cbb83649227d59e7461be3bd605_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;目前我们正在学习的是第一门课《Neural Networks and Deep Learning》。Coursera上关于这门课的教学日程安排如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/v2-b1f9ae53ce0758eb350fcc974a1557f5_b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;五、Summary&lt;/h3&gt;
+&lt;p&gt;本节课的内容比较简单，主要对深度学习进行了简要概述。首先，我们使用房价预测的例子来建立最简单的但个神经元组成的神经网络模型。然后，我们将例子复杂化，建立标准的神经网络模型结构。接着，我们从监督式学习入手，介绍了不同的神经网络类型，包括Standard NN，CNN和RNN。不同的神经网络模型适合处理不同类型的问题。对数据集本身来说，分为Structured Data和Unstructured Data。近些年来，深度学习对Unstructured Data的处理能力大大提高，例如图像处理、语音识别和语言翻译等。最后，我们用一张对比图片解释了深度学习现在飞速发展、功能强大的原因。归纳其原因包含三点：Data，Computation和Algorithms。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;注明&lt;/h3&gt;
+&lt;p&gt;文章中的内容大都来自Coursera上的课程材料&lt;/p&gt;
+
+&lt;h3 id=&quot;changelog&quot;&gt;Changelog&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;2017-09-24 创建&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>沥川</name><email>yzhjsw520@gmail.com</email></author><category term="deeplearning" /><summary type="html">深度学习概述</summary></entry><entry><title type="html">黑客2 - 万物源自比特</title><link href="https://Hugo1030.github.io/note/the-history-of-infomation/" rel="alternate" type="text/html" title="黑客2 - 万物源自比特" /><published>2017-09-24T00:00:00+08:00</published><updated>2017-09-24T00:00:00+08:00</updated><id>https://Hugo1030.github.io/note/the-history-of-infomation</id><content type="html" xml:base="https://Hugo1030.github.io/note/the-history-of-infomation/">&lt;p&gt;《信息简史》是一本不可多得的好书，它为我们打开了一扇新的大门，从信息的视角重新看待万事万物。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;信息改变不确定&lt;/h3&gt;
+
+&lt;p&gt;2014年世界杯决赛，在德国队和阿根廷队之间展开。假如你是一个伪球迷，可能会猜它们各自五成可能夺冠。这时，一位专业足球评论员跟你说，德国队近来年表现优秀，主帅勒夫策略非凡，而阿根廷已经有很多届未进入世界杯总决赛了。基于这些信息，作为伪球迷的你，心理肯定会给德国队加分。你开始认为德国队有八成可能夺冠。当世界杯结果出来，果然德国队获得冠军，这个结果对你而言也会没有那么惊讶。是因为，&lt;strong&gt;信息，改变了对这个事件的不确定程度。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;香农总结了这样的规律，重新定义了什么是「信息」。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;信息与不确定性密切相关。反过来，不确定性可以通过统计可能的信息数量加以度量。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;他不仅定性定义了信息的概念，而且通过数学定量计算了信息的量，单位是比特。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wikimedia.org/api/rest_v1/media/math/render/svg/b6004f2286d02cce588d3517418135c09a53b6bb&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;熵是整个系统的平均消息量，即：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://wikimedia.org/api/rest_v1/media/math/render/svg/af10c6894a28f4b231283947c2cf139ac1c4d40a&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;从冗余到说话&lt;/h3&gt;
+&lt;p&gt;什么是冗余？&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;冗余度量了某种语言的文本在不损失任何信息的前提下能够缩减多少篇幅。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;举一个例子，20世纪70年代著名的纽约地铁海报创意。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;if u cn rd ths&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;u cn gt a gd jb!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这两句话，大概省略了50%的字符，但并不影响我们的理解。我们可以说这句话和原始句子的信息是等价的，省略的部分就是冗余。&lt;/p&gt;
+
+&lt;p&gt;这是在字符层面上的冗余，我们平时在与人说话的时候，有没有冗余呢？或者说，你并没有给对方提供什么额外的信息？&lt;/p&gt;
+
+&lt;p&gt;当我们附和别人话语，讲述同样故事，描述大家都知道的消息时，并不能给对方提供额外有价值的信息，这样的交流也会比较的乏味和无趣。但是如果能调动自己的大脑，思考对方语言里面忽略的地方，提供一些对方不清楚的信息时，可以减少交流冗余，提高信息含量，也会更有力量。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;万物源自比特&lt;/h3&gt;
+&lt;p&gt;世间万物，大到星云、黑洞，小到树叶、雨滴。都可以通过信息的视角重新审视一遍，让我们看到不一样的世界。&lt;/p&gt;
+
+&lt;p&gt;一片叶子和一颗大树的信息含量，是否不一样？是什么两让梧桐树叶子像手掌、如蒲扇，又是什么控制松树叶子如针尖状？一切从虚无的不确定海洋而来，上帝之手通过基因的编码，让一切生命长成我们现在看到的样子。一只铅笔，一块橡皮，到航空母舰、宇宙飞船。一切人造之物也蕴含了不同数量的信息。&lt;/p&gt;
+
+&lt;p&gt;通过信息的滤镜，我们看到宇宙流转的是迁徙不定的信息。&lt;/p&gt;
+
+&lt;h3 id=&quot;changelog&quot;&gt;Changelog&lt;/h3&gt;
+&lt;p&gt;2017-09-24 创建&lt;/p&gt;</content><author><name>沥川</name><email>yzhjsw520@gmail.com</email></author><category term="开智正典" /><summary type="html">《信息简史》读书笔记</summary></entry><entry><title type="html">「弯道超车」的一些思考</title><link href="https://Hugo1030.github.io/article/corner-overtaking/" rel="alternate" type="text/html" title="「弯道超车」的一些思考" /><published>2017-09-22T00:00:00+08:00</published><updated>2017-09-22T00:00:00+08:00</updated><id>https://Hugo1030.github.io/article/corner-overtaking</id><content type="html" xml:base="https://Hugo1030.github.io/article/corner-overtaking/">&lt;p&gt;「弯道超车」需要的是：&lt;strong&gt;不疾不徐的压倒性努力!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;「弯道超车」很难，难在它是一个矛盾的过程。&lt;strong&gt;「弯道超车」慢不得！&lt;/strong&gt; 当你跨入一个全新的领域，是一个相对落后的状态，这个时候需要你比他人更加努力，才能补上这个差距。&lt;strong&gt;「弯道超车」快不得！&lt;/strong&gt; 急于求成、急于证明自己的心态，很容易给自己增加沉重的认知负担，也没有认知盈余沉静下来，深入细节探索研究。总是拼命往前赶，希望一口吃个胖子，很容易遇到一个平台期，长时间无法进步，动机就迅速消耗，最终放弃！&lt;/p&gt;
+
+&lt;p&gt;「弯道超车」是一个艰难而漫长的过程：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;切忌故作轻松，在人前表现自己多牛逼。其实你很狼狈，没必要去装，造成不必要的心理负担！&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;不要放松努力，别人在这个领域已经投入了10年时间，你不会想永远打个酱油吧？你希望能够在新的舞台上面，与天下英雄争锋。这个时候，你不加倍努力，怎么能行？&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;要有长期作战的准备，绝对不可能一口吃个胖子，这不是几个通宵就能搞定的事。好好锻炼身体，养成学习进步的习惯，当自己怀疑自己，动摇泄气的时候，多坚持一会儿，别放弃，事情永远会有转机！&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;changelog&quot;&gt;Changelog&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;2017-09-22 创建&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>沥川</name><email>yzhjsw520@gmail.com</email></author><summary type="html">写在「开智大会」之后</summary></entry><entry><title type="html">黑客1 - 从新手到专家</title><link href="https://Hugo1030.github.io/note/from-beginner-to-expert/" rel="alternate" type="text/html" title="黑客1 - 从新手到专家" /><published>2017-08-31T00:00:00+08:00</published><updated>2017-08-31T00:00:00+08:00</updated><id>https://Hugo1030.github.io/note/from-beginner-to-expert</id><content type="html" xml:base="https://Hugo1030.github.io/note/from-beginner-to-expert/">&lt;p&gt;一个月前，我在Py101-004开学典礼问大妈，新手和专家的区别在哪里？&lt;/p&gt;
+
+&lt;p&gt;念念不忘，必有回响。今天，在阅读《程序员思维修炼》时，让我对这个问题有了更深的理解。所谓专家，&lt;strong&gt;是指在情景中，运用直觉做事，心态平和专注的人。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;无独有偶，大妈和本书作者在探讨这个问题时，都用到了类比的方法。在编程领域，新手和专家的区别在哪里？大妈用了一个手擀面的例子，外婆做手擀面和你做手擀面的区别在哪里，为什么一个又快又好？一个手忙脚乱？当时我的回答是经验和直觉，大妈加了一个平常心。&lt;/p&gt;
+
+&lt;p&gt;而作者也运用了其他领域的「德雷福斯模型」，类比到编程，来说明从新手到专家的进阶图谱。&lt;/p&gt;
+
+&lt;p&gt;这个模型将新手到专家一共分为了五个层次：新手、高级新手、胜任者、精通者和专家。&lt;strong&gt;而这就是这本书的精华所在。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;新手：是指那些需要指令才能工作的人。&lt;/li&gt;
+  &lt;li&gt;高级新手：不愿全盘思考。当分配工作给高级新手时，他们认为每项工作同样重要，不明了优先层级，无法认知每件工作的相关性。工作安排给高级新手时，必须排列优先级。&lt;/li&gt;
+  &lt;li&gt;胜任者：能够自己搜索相关资源，懂得科学上网，独立完成任务，解决问题。&lt;/li&gt;
+  &lt;li&gt;精通者：有整体的思维，对问题愿意深入思考，找出不同的解决方法。不只是完成任务，而且对任务相关的知识也愿意探索，随时监控和反思自己的思维和行动，不断迭代和完善。他们比新手有更迅速的进步速度。&lt;/li&gt;
+  &lt;li&gt;专家：在情景中，运用直觉，平常心。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;情景中&lt;/strong&gt;，是一个非常重要的概念。说明专家是灵活的、临在的并且因地制宜。法国大师级厨师在做菜时，会根据当天的气温，当时的情绪，食材的纹路气味触感，即兴发挥。做同一道菜，每次都不一样。又如孔夫子，在教导不同弟子，对同一个问题，有不同的回答，因材施教。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;子路问:“闻斯行诸?”&lt;br /&gt;
+ 子曰:“有父兄在，如之何其闻斯行之?”&lt;br /&gt;
+ 冉有问:“闻斯行诸?” &lt;br /&gt;
+ 子曰:“闻斯行之。”&lt;br /&gt;
+ 公西华曰:“由也问，闻斯行诸？子曰，‘有父兄在’；求也问闻斯行诸，子曰‘闻斯行之’。赤也惑，敢问。”&lt;br /&gt;
+ 子曰:“求也退，故进之；由也兼人，故退之。”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;新手运用情景无关的知识，专家使用情景内的直觉。&lt;/strong&gt; 下面这个是个很好的例子：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;在小说《戴珍珠耳环的少女》（The Girl with the Pearl Earring）中，作者描写了一个画家维梅尔，还有他的女佣启发他画出了最有名的一部作品的故事。故事中，维梅尔准备教女孩画画。他让女孩描述一位年轻姑娘的穿着。女孩回答说是黄色的。维梅尔假装很惊讶：是真的吗？女孩又看了一遍，更仔细一点，然后说，有一些褐色的斑点。这就是你看到的全部吗？维梅尔问道。现在女孩更加仔细地研究。不，她说，它有绿色和褐色的斑点，边缘有一点银色，衣服下方有一点黑色斑点，衣服的褶皱处有一些暗黄色斑点，等等。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;当你调用过去所学的知识模型时，就没有处于情景之中，当然也无法运用直觉。&lt;strong&gt;直觉产生于细节之中。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;专家需要平常心。为什么？是因为&lt;strong&gt;专家做事运用直觉，而压力会扼杀直觉。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;还记得当时我问大妈，平常心是可习得吗？他说万分之一是天生，其余都是习得。那么如何习得？这本书作者提到了一种重要方法「内在诀窍(Inner game)」。选取《网球的内在诀窍》中一小段：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;添·高威出现了。当时他还是个瘦瘦的年轻人，穿着一条有时代特色的喇叭裤。只见他轻松地挥着球拍，告诉莫莉，不要担心姿式和步伐，也不需要拼尽全力。其实很简单，当球飞过来，用拍去接。接中了就说“Hit（击中）！”；如果球落到了地上，就说“Bounce（飞弹）”。&lt;br /&gt;
+莫莉就照着他的话去做，一副很无所谓的样子，反正不是击中就是飞弹，一切易如反掌。 添·高威接着告诉莫莉，留意球飞来的弧线，留意聆听球的声音。渐渐人们发现，电视中的莫莉明显Hit多了，Bounce的时候少了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;很多人，在公开场合时，压力紧张，无法处于情景中，是因为他们&lt;strong&gt;太在意别人对自己的看法， 害怕失败。&lt;/strong&gt; 而内在诀窍的方法，利用时空变形，将成功和失败，变为了「Hit」和「Bounce」,避免了压力的情绪，利用身体的直觉，迅速进入状态，取得显著进步。&lt;/p&gt;
+
+&lt;p&gt;当我知道了新手和专家的区别，那么我们就可以如同专家一样去做事。&lt;strong&gt;在情景中留意细节，利用内在诀窍获取平常心，运用自己的直觉。&lt;/strong&gt; 这样会让学习编程变得更加有趣和有效。&lt;/p&gt;
+
+&lt;h3 id=&quot;changelog&quot;&gt;Changelog&lt;/h3&gt;
+&lt;p&gt;2017-08-31 创建&lt;/p&gt;</content><author><name>沥川</name><email>yzhjsw520@gmail.com</email></author><category term="开智正典" /><summary type="html">《程序员思维修炼》读书笔记</summary></entry><entry><title type="html">基于git+gollum的个人wiki管理器</title><link href="https://Hugo1030.github.io/tech/install-gollum/" rel="alternate" type="text/html" title="基于git+gollum的个人wiki管理器" /><published>2017-08-29T00:00:00+08:00</published><updated>2017-08-29T00:00:00+08:00</updated><id>https://Hugo1030.github.io/tech/install-gollum</id><content type="html" xml:base="https://Hugo1030.github.io/tech/install-gollum/">&lt;ul&gt;
+  &lt;li&gt;使用MacPorts package manager来安装gollum。&lt;a href=&quot;https://www.macports.org/&quot;&gt;MacPorts地址&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Macports安装成功后，加入环境：将/opt/local/bin和/opt/local/sbin添加到$PATH搜索路径中，编辑/etc/profile文件中，加上
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export PATH=/opt/local/bin:$PATH
+export PATH=/opt/local/sbin:$PATH
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo port install ruby_select &amp;lt;ruby-portname&amp;gt;&lt;/code&gt;安装ruby，已安装可跳过这步&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo port select --set ruby &amp;lt;ruby-portname&amp;gt;&lt;/code&gt;将已安装ruby设为默认&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo port install icu&lt;/code&gt;安装icu依赖包&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo gem install charlock_holmes -- --with-icu-dir=/opt/local/lib/icu --with-opt-include=/opt/local/include/ --with-opt-lib=/opt/local/lib/&lt;/code&gt;设定charlock_holmes标准目录&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo gem install gollum&lt;/code&gt;安装gollum&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gollum --v&lt;/code&gt;查看版本及是否安装成功。&lt;/li&gt;
+  &lt;li&gt;建立一个wiki目录进行git管理
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir wiki
+cd wiki
+git init
+gollum
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;在浏览器中访问&lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:4567/&lt;/code&gt;，就OK了
+&lt;img width=&quot;1044&quot; alt=&quot;1&quot; src=&quot;https://user-images.githubusercontent.com/24667603/29804416-09da9c22-8cb5-11e7-9812-44131f6b8067.png&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;changelog&quot;&gt;Changelog&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;2017-08-29 创建&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>沥川</name><email>yzhjsw520@gmail.com</email></author><category term="git" /><summary type="html">gollum的安装</summary></entry><entry><title type="html">智慧5 - 傲慢与偏见</title><link href="https://Hugo1030.github.io/note/the-truth-and-beauty/" rel="alternate" type="text/html" title="智慧5 - 傲慢与偏见" /><published>2017-08-18T00:00:00+08:00</published><updated>2017-08-18T00:00:00+08:00</updated><id>https://Hugo1030.github.io/note/the-truth-and-beauty</id><content type="html" xml:base="https://Hugo1030.github.io/note/the-truth-and-beauty/">&lt;p&gt;二零零五年夏天，炙热的阳光洒在斯坦福校园内。一群年轻学子身着学士服，激动却安静坐在那里，聆听乔布斯的演讲，今天是他们从这所顶级大学毕业的日子。乔布斯站在讲台上，表情严肃地看着这群天之骄子。他没有对他们的成就赞赏，嘴里吐出的是郑重的提醒：「Stay hungry, stay foolish」。&lt;/p&gt;
+
+&lt;p&gt;在艺术界和科学界，有这样一个奇怪的现象。当我们看一位艺术家或作家的作品时，总会发现这些作品有一个从早期、中期到成熟期的发展过程。艺术家的本领越来越精，对人性地刻画越来越深，处理的问题越来越复杂。例如莎士比亚，从早期的《罗密欧与朱丽叶》到四大悲剧时期的《李尔王》再到晚年的《暴风雨》。你可以看到每部剧之间巨大的进步，莎士比亚试图不断寻找一些新的东西，以解决一个又一个深奥的主题。&lt;/p&gt;
+
+&lt;p&gt;自然科学界似乎有所不同。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;爱因斯坦是一位具有伟大科学头脑的科学家。他在1905年就发现了狭义相对论和一些其他重大理论。以惊人的刻苦精神从事研究，1916年又发现了广义相对论。到20年代早期，他还做出过一些重要的发现。但从此以后，便停步不前，孤立于科学进步之外，成为一个量子理论的批评家，再没有为科学和他本人增添什么光彩。爱因斯坦在40岁以后的研究工作中，没有任何迹象表明他的智慧和悟性比以前更强一些。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;不仅是爱因斯坦，牛顿、麦克斯韦、斯托克斯、爱丁顿…随着科学家的成长和成熟，他们的无能也就越明显。这是为什么？&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;是成功，产生傲慢，由傲慢，产生偏见。&lt;/strong&gt; 正如爱丁顿傲慢地说：「一定有一条自然法则阻止星体变成一个黑洞。」爱因斯坦同样如此：「上帝不会掷筛子。」&lt;/p&gt;
+
+&lt;p&gt;难道只有这些科学巨匠才有这种无法进步、停滞不前的问题吗？普通人也是一样。** 当你长期待在同一个专业和领域，取得一定成就之后。不知不觉滋生了傲慢与偏见。更加可怕的是，当你傲慢时，便失去了探索的欲望，进步的动机。**&lt;/p&gt;
+
+&lt;p&gt;如何才能让自己永远保持「饥饿」和「愚蠢」呢？作者钱德拉萨卡给我们做出了一个经典的榜样。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;他每隔十年就投身于一个新的研究领域，在63岁高龄仍旧强迫自己放弃已经驾轻就熟的课题，重新开始分析当物质消失在一个黑洞历时。会发生什么现象！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;无论你取得多大的成就，当你投身于新的领域时，便会更容易保持谦虚的精神。&lt;/strong&gt; 这难道不会给我们某些启示吗？当我们在某个领域取得一定的成就时，当我们开始傲慢与自满时，去尝试新的领域、探索新的事物吧，这不仅仅是永恒的学习与进步，更是让生命鲜活与有趣。&lt;/p&gt;
+
+&lt;p&gt;Stay hungry, stay foolish.&lt;/p&gt;
+
+&lt;h3 id=&quot;changelog&quot;&gt;Changelog&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;2017年08月18日 创建&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>沥川</name><email>yzhjsw520@gmail.com</email></author><category term="开智正典" /><summary type="html">《莎士比亚、牛顿和贝多芬：不同的创造模式》读书笔记</summary></entry><entry><title type="html">从「打新」到投资</title><link href="https://Hugo1030.github.io/invest/new-stock/" rel="alternate" type="text/html" title="从「打新」到投资" /><published>2017-08-17T00:00:00+08:00</published><updated>2017-08-17T00:00:00+08:00</updated><id>https://Hugo1030.github.io/invest/new-stock</id><content type="html" xml:base="https://Hugo1030.github.io/invest/new-stock/">&lt;p&gt;前几天发现中了一签「永安行」，便发了朋友圈，后来开盘第一天涨幅就达到44%，后面估计还有50%左右的涨幅。&lt;/p&gt;
+
+&lt;p&gt;后来发现有些朋友对「打新」不是很了解，我觉得很有必要讲一下相关的知识。&lt;strong&gt;因为「打新」是低风险、高收益又很简单的投资方式，不知道或者不去做，实在太可惜了。新股就像是免费的彩票，就应该天天打，只只打。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;简单的卖出策略是：&lt;strong&gt;开板那天收盘再卖。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;折价发行套利&lt;/h3&gt;
+
+&lt;p&gt;新股为什么是低风险和高收益的？&lt;strong&gt;是因为折价发行，提供了套利空间。&lt;/strong&gt; 一般新股上市首日市盈率不超过23倍，远低于同行业估值，因此存在较大套利的空间。&lt;/p&gt;
+
+&lt;p&gt;根据统计，在2014年1月至2016年8月上市的423只新股中，仅6只未达到44%的首日涨幅上限。2016年11月之前，&lt;strong&gt;平均发行价上涨幅度为4倍&lt;/strong&gt;。后来国家改变了游戏规则，不需要预先缴款了，参与人数增加，收益下降。&lt;strong&gt;但中签后，新股的平均涨幅也不低于2倍。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;游戏规则&lt;/h3&gt;
+
+&lt;p&gt;「打新」分为网上和网下两种，网下打新需要长期持有股票市值三千万元，跟我们关系不大，现在介绍网上打新的情况。&lt;/p&gt;
+
+&lt;p&gt;沪市每持有1万元市值可申购1000股。深市每持有5000元市值可申购500股。每只新股可申购额度均按照T-2日前20个交易日日均持有市值确定。就是说，&lt;strong&gt;如果你想申购新股，必须持有一定市值的沪深股票。一般而言，新股是不会亏钱的，但是持有的底仓股票有可能亏损，这点必须要注意到。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在T日进行申购，T+1日根据你申购的额度进行配号，T+2抽签「摇号」，T+3日公布抽签结果并缴款。大约一周以后新股上市。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;从「打新」到投资&lt;/h3&gt;
+
+&lt;p&gt;如果想要打新，那么你就必须持有沪深两市的股票市值，而股票是有可能亏钱的。&lt;strong&gt;股票市场长期流传一句话：炒股七亏，两平，一赚。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这样说有失偏颇。&lt;strong&gt;我认为，股票投资，是每个人必须掌握的一项重要技能，正确的方向比努力重要，在正确的方向上，取得满意的成绩，是一件很容易的事。&lt;/strong&gt; 下面我就简单介绍一下学习投资，需要掌握的知识。&lt;/p&gt;
+
+&lt;p&gt;首先要知道资产和负债的概念，&lt;strong&gt;所谓资产，是能给你每月每年带来稳定现金流的东西。负债，是需要自己每月每年支付现金的东西。&lt;/strong&gt; 按照这个定义，大家想想自住房、车子是资产还是负债？推荐阅读：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;《穷爸爸富爸爸系列》&lt;a href=&quot;https://book.douban.com/subject/1033778/&quot;&gt;豆瓣链接&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;然后需要学习大类资产配置，&lt;strong&gt;进行大类资产配置，可以在同等风险下，提高收益。或者在同等收益下，降低风险。&lt;/strong&gt; 推荐阅读:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;《聪明的投资者》&lt;a href=&quot;https://book.douban.com/subject/5243775/&quot;&gt;豆瓣链接&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;《不落俗套的成功》&lt;a href=&quot;https://book.douban.com/subject/3725211/&quot;&gt;豆瓣链接&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;我的雪球文章《钱就要躺着赚》&lt;a href=&quot;https://xueqiu.com/8071598632/80675408&quot;&gt;雪球链接&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;投资里面有两种重要投资工具，股票和是债券。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;先说债券投资，最重要的是安全，宁可降低收益预期，也一定要保证安全，因为它在我们的投资组合中起到稳定器的作用&lt;/strong&gt;，如何衡量债券的安全性？推荐阅读：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;《证券分析》&lt;a href=&quot;https://book.douban.com/subject/24092345/&quot;&gt;豆瓣链接&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;《低风险投资之路》&lt;a href=&quot;https://book.douban.com/subject/26786534/&quot;&gt;豆瓣链接&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;世面上讲股票投资的书籍文章汗牛充栋，里面良莠不齐，大多误人子弟。&lt;strong&gt;股票投资，最重要的是低估、分散和股息。&lt;/strong&gt; 我建议学习经典，选择古今中外经过长期检验都证明有效的投资方法。推荐阅读：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;我的投资书籍豆列「聪明的投资者」&lt;a href=&quot;https://www.douban.com/doulist/46148167/&quot;&gt;豆瓣链接&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;我的雪球文章：
+    &lt;ul&gt;
+      &lt;li&gt;《构建股票组合》&lt;a href=&quot;https://xueqiu.com/edit/80353924&quot;&gt;雪球链接&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;《熊市中高收益的秘密》&lt;a href=&quot;https://xueqiu.com/8071598632/80464212&quot;&gt;雪球链接&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;《研究企业需要多深？》&lt;a href=&quot;https://xueqiu.com/8071598632/80391023&quot;&gt;雪球链接&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;《我是如何被人割韭菜的》&lt;a href=&quot;https://xueqiu.com/8071598632/80578221&quot;&gt;雪球链接&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;结语&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;投资的真正作用在于，给自己更大的人生自由度。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;假如你拥有一百万的可投资产，每年产生10%的现金收益，那么在不工作的情况下，仍然每年有将近十万的收入。当你想要自己掌控时间，换一份工作，去追寻梦想的时候，投资会给你更多的自由。愿每位朋友都学会这项宝贵的人生技能。&lt;/p&gt;
+
+&lt;h3 id=&quot;changelog&quot;&gt;Changelog&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;2017年08月17日 创建&lt;/li&gt;
+  &lt;li&gt;2017年08月18日 从打新到投资&lt;/li&gt;
+  &lt;li&gt;2017年08月29日 添加卖出策略&lt;/li&gt;
+  &lt;li&gt;2017年08月31日 改进卖出策略&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>沥川</name><email>yzhjsw520@gmail.com</email></author><category term="投资" /><summary type="html">从「打新」开始，再聊聊投资</summary></entry></feed>

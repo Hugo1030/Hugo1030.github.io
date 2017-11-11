@@ -1,0 +1,289 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>吴恩达《神经网络和深度学习》课程笔记（1）-- 深度学习概述 &#8211; 沥川</title>
+<meta name="description" content="深度学习概述">
+<meta name="keywords" content="deeplearning">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="吴恩达《神经网络和深度学习》课程笔记（1）-- 深度学习概述">
+<meta name="twitter:description" content="深度学习概述">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://Hugo1030.github.io/images/site-logo.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="中国">
+<meta property="og:type" content="article">
+<meta property="og:title" content="吴恩达《神经网络和深度学习》课程笔记（1）-- 深度学习概述">
+<meta property="og:description" content="深度学习概述">
+<meta property="og:url" content="https://Hugo1030.github.io/tech/deeplearning-week1/">
+<meta property="og:site_name" content="沥川">
+
+
+
+
+
+<link rel="canonical" href="https://Hugo1030.github.io/tech/deeplearning-week1/">
+<link href="https://Hugo1030.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="沥川 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://Hugo1030.github.io/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="https://Hugo1030.github.io/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="https://Hugo1030.github.io/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="https://Hugo1030.github.io/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="https://Hugo1030.github.io/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="https://Hugo1030.github.io/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="https://Hugo1030.github.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://Hugo1030.github.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://Hugo1030.github.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://Hugo1030.github.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="https://Hugo1030.github.io/about/" >关于</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/articles/" >随笔</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/note/" >笔记</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/tech/" >技术</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/invest/" >投资</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/wiki/" >维基</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/search/" >搜索</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+  		<a href="https://Hugo1030.github.io/" class="site-logo" rel="home" title="沥川"><img src="https://Hugo1030.github.io/images/site-logo.png" width="200" height="200" alt="沥川 logo" class="animated fadeInDown"></a>
+      
+      <h1 class="site-title animated fadeIn"><a href="https://Hugo1030.github.io/">沥川</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">士不可不弘毅</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="https://Hugo1030.github.io/tags/#deeplearning" title="Pages tagged deeplearning">deeplearning</a></li>
+        </ul>
+        
+          <h1 class="entry-title">吴恩达《神经网络和深度学习》课程笔记（1）-- 深度学习概述</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="https://Hugo1030.github.io/images/bio-photo-2.jpg" class="bio-photo" alt="沥川 bio photo"></a>
+        
+        <span class="author vcard">By <span class="fn">沥川</span></span>
+        <span class="entry-date date published"><time datetime="2017-09-24T00:00:00+08:00"><i class="fa fa-calendar-o"></i> September 24, 2017</time></span>
+        
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <h3 id="what-is-a-neural-network">一、What is a neural network?</h3>
+<p>简单来说，深度学习（Deep Learning）就是更复杂的神经网络（Neural Network）。那么，什么是神经网络呢？下面我们将通过一个简单的例子来引入神经网络模型的概念。</p>
+
+<p>假如我们要建立房价的预测模型，一共有六个房子。我们已知输入x即每个房子的面积（多少尺或者多少平方米），还知道其对应的输出y即每个房子的价格。根据这些输入输出，我们要建立一个函数模型，来预测房价：y=f(x)。首先，我们将已知的六间房子的价格和面积的关系绘制在二维平面上，如下图所示：
+<img src="https://pic4.zhimg.com/v2-3e292e825a1cdc5368750ec4d37a425f_b.png" alt="" /></p>
+
+<p>一般地，我们会一条直线来拟合图中这些离散点，即建立房价与面积的线性模型。但是从实际考虑，我们知道价格永远不会是负数。所以，我们对该直线做一点点修正，让它变成折线的形状，当面积小于某个值时，价格始终为零。如下图蓝色折线所示，就是我们建立的房价预测模型。
+<img src="https://pic4.zhimg.com/v2-23f45aff070f2c619df4c03bb1c17607_b.png" alt="" /></p>
+
+<p>其实这个简单的模型（蓝色折线）就可以看成是一个神经网络，而且几乎是一个最简单的神经网络。我们把该房价预测用一个最简单的神经网络模型来表示，如下图所示：
+<img src="https://pic1.zhimg.com/v2-3e76fd4bea02973aad1f6917253ac098_b.png" alt="" /></p>
+
+<p>该神经网络的输入x是房屋面积，输出y是房屋价格，中间包含了一个神经元（neuron），即房价预测函数（蓝色折线）。该神经元的功能就是实现函数f(x)的功能。</p>
+
+<p>值得一提的是，上图神经元的预测函数（蓝色折线）在神经网络应用中比较常见。我们把这个函数称为ReLU函数，即线性整流函数（Rectified Linear Unit），形如下图所示：
+<img src="https://pic3.zhimg.com/v2-75a630e1aa79b59992a2d5eb3c48ce72_b.png" alt="" /></p>
+
+<p>上面讲的只是由单个神经元（输入x仅仅是房屋面积一个因素）组成的神经网络，而通常一个大型的神经网络往往由许多神经元组成，就像通过乐高积木搭建复杂物体（例如火车）一样。</p>
+
+<p>现在，我们把上面举的房价预测的例子变得复杂一些，而不是仅仅使用房屋面积一个判断因素。例如，除了考虑房屋面积（size）之外，我们还考虑卧室数目（#bedrooms）。这两点实际上与家庭成员的个数（family size）有关。还有，房屋的邮政编码（zip code/postal code），代表了该房屋位置的交通便利性，是否需要步行还是开车？即决定了可步行性（walkability）。另外，还有可能邮政编码和地区财富水平（wealth）共同影响了房屋所在地区的学校质量（school quality）。如下图所示，该神经网络共有三个神经元，分别代表了family size，walkability和school quality。每一个神经元都包含了一个ReLU函数（或者其它非线性函数）。那么，根据这个模型，我们可以根据房屋的面积和卧室个数来估计family size，根据邮政编码来估计walkability，根据邮政编码和财富水平来估计school quality。最后，由family size，walkability和school quality等这些人们比较关心的因素来预测最终的房屋价格。</p>
+
+<p><img src="https://pic3.zhimg.com/v2-7a77cdef9b72c8d3e6c7bf36721a7c2e_b.png" alt="" /></p>
+
+<p>这就是基本的神经网络模型结构。在训练的过程中，只要有足够的输入x和输出y，就能训练出较好的神经网络模型，该模型在此类房价预测问题中，能够得到比较准确的结果。</p>
+
+<h3 id="supervised-learning-with-neural-networks">二、Supervised Learning with Neural Networks</h3>
+
+<p>目前为止，由神经网络模型创造的价值基本上都是基于监督式学习（Supervised Learning）的。监督式学习与非监督式学习本质区别就是是否已知训练样本的输出y。在实际应用中，机器学习解决的大部分问题都属于监督式学习，神经网络模型也大都属于监督式学习。下面我们来看几个监督式学习在神经网络中应用的例子。</p>
+
+<p>首先，第一个例子还是房屋价格预测。根据训练样本的输入x和输出y，训练神经网络模型，预测房价。第二个例子是线上广告，这是深度学习最广泛、最赚钱的应用之一。其中，输入x是广告和用户个人信息，输出y是用户是否对广告进行点击。神经网络模型经过训练，能够根据广告类型和用户信息对用户的点击行为进行预测，从而向用户提供用户自己可能感兴趣的广告。第三个例子是电脑视觉（computer vision）。电脑视觉是近些年来越来越火的课题，而电脑视觉发展迅速的原因很大程度上是得益于深度学习。其中，输入x是图片像素值，输出是图片所属的不同类别。第四个例子是语音识别（speech recognition）。深度学习可以将一段语音信号辨识为相应的文字信息。第五个例子是智能翻译，例如通过神经网络输入英文，然后直接输出中文。除此之外，第六个例子是自动驾驶。通过输入一张图片或者汽车雷达信息，神经网络通过训练来告诉你相应的路况信息并作出相应的决策。至此，神经网络配合监督式学习，其应用是非常广泛的。</p>
+
+<p><img src="https://pic4.zhimg.com/v2-865525d2a25ed0e8cf09b58360deb433_b.png" alt="" /></p>
+
+<p>我们应该知道，根据不同的问题和应用场合，应该使用不同类型的神经网络模型。例如上面介绍的几个例子中，对于一般的监督式学习（房价预测和线上广告问题），我们只要使用标准的神经网络模型就可以了。而对于图像识别处理问题，我们则要使用卷积神经网络（Convolution Neural Network），即CNN。而对于处理类似语音这样的序列信号时，则要使用循环神经网络（Recurrent Neural Network），即RNN。还有其它的例如自动驾驶这样的复杂问题则需要更加复杂的混合神经网络模型。</p>
+
+<p>CNN和RNN是比较常用的神经网络模型。下图给出了Standard NN，Convolutional NN和Recurrent NN的神经网络结构图。</p>
+
+<p><img src="https://pic3.zhimg.com/v2-84d50549ac0e0a6d6730e4f8a98affe6_b.png" alt="" /></p>
+
+<p>CNN一般处理图像问题，RNN一般处理语音信号。他们的结构是什么意思？如何实现CNN和RNN的结构？这些问题我们将在以后的课程中来深入分析并解决。</p>
+
+<p>另外，数据类型一般分为两种：Structured Data和Unstructured Data。</p>
+
+<p><img src="https://pic4.zhimg.com/v2-be24e820f52a3cfb97fe5e18c0c2205f_b.png" alt="" /></p>
+
+<p>简单地说，Structured Data通常指的是有实际意义的数据。例如房价预测中的size，#bedrooms，price等；例如在线广告中的User Age，Ad ID等。这些数据都具有实际的物理意义，比较容易理解。而Unstructured Data通常指的是比较抽象的数据，例如Audio，Image或者Text。以前，计算机对于Unstructured Data比较难以处理，而人类对Unstructured Data却能够处理的比较好，例如我们第一眼很容易就识别出一张图片里是否有猫，但对于计算机来说并不那么简单。现在，值得庆幸的是，由于深度学习和神经网络的发展，计算机在处理Unstructured Data方面效果越来越好，甚至在某些方面优于人类。总的来说，神经网络与深度学习无论对Structured Data还是Unstructured Data都能处理得越来越好，并逐渐创造出巨大的实用价值。我们在之后的学习和实际应用中也将会碰到许多Structured Data和Unstructured Data。</p>
+
+<h3 id="why-is-deep-learning-taking-off">三、Why is Deep Learning taking off？</h3>
+<p>如果说深度学习和神经网络背后的技术思想已经出现数十年了，那么为什么直到现在才开始发挥作用呢？接下来，我们来看一下深度学习背后的主要动力是什么，方便我们更好地理解并使用深度学习来解决更多问题。</p>
+
+<p>深度学习为什么这么强大？下面我们用一张图来说明。如下图所示，横坐标x表示数据量（Amount of data），纵坐标y表示机器学习模型的性能表现（Performance）。</p>
+
+<p><img src="https://pic1.zhimg.com/v2-40e32c3411bfcfa57244dcd352ebd974_b.png" alt="" /></p>
+
+<p>上图共有4条曲线。其中，最底下的那条红色曲线代表了传统机器学习算法的表现，例如是SVM，logistic regression，decision tree等。当数据量比较小的时候，传统学习模型的表现是比较好的。但是当数据量很大的时候，其表现很一般，性能基本趋于水平。红色曲线上面的那条黄色曲线代表了规模较小的神经网络模型（Small NN）。它在数据量较大时候的性能优于传统的机器学习算法。黄色曲线上面的蓝色曲线代表了规模中等的神经网络模型（Media NN），它在在数据量更大的时候的表现比Small NN更好。最上面的那条绿色曲线代表更大规模的神经网络（Large NN），即深度学习模型。从图中可以看到，在数据量很大的时候，它的表现仍然是最好的，而且基本上保持了较快上升的趋势。值得一提的是，近些年来，由于数字计算机的普及，人类进入了大数据时代，每时每分，互联网上的数据是海量的、庞大的。如何对大数据建立稳健准确的学习模型变得尤为重要。传统机器学习算法在数据量较大的时候，性能一般，很难再有提升。然而，深度学习模型由于网络复杂，对大数据的处理和分析非常有效。所以，近些年来，在处理海量数据和建立复杂准确的学习模型方面，深度学习有着非常不错的表现。然而，在数据量不大的时候，例如上图中左边区域，深度学习模型不一定优于传统机器学习算法，性能差异可能并不大。</p>
+
+<p>所以说，现在深度学习如此强大的原因归结为三个因素：</p>
+<ul>
+  <li>Data</li>
+  <li>Computation</li>
+  <li>Algorithms</li>
+</ul>
+
+<p>其中，数据量的几何级数增加，加上GPU出现、计算机运算能力的大大提升，使得深度学习能够应用得更加广泛。另外，算法上的创新和改进让深度学习的性能和速度也大大提升。举个算法改进的例子，之前神经网络神经元的激活函数是Sigmoid函数，后来改成了ReLU函数。之所以这样更改的原因是对于Sigmoid函数，在远离零点的位置，函数曲线非常平缓，其梯度趋于0，所以造成神经网络模型学习速度变得很慢。然而，ReLU函数在x大于零的区域，其梯度始终为1，尽管在x小于零的区域梯度为0，但是在实际应用中采用ReLU函数确实要比Sigmoid函数快很多。</p>
+
+<p><img src="https://pic2.zhimg.com/v2-9a96aaa81919e35932c352d2fedf1ca9_b.png" alt="" /></p>
+
+<p>构建一个深度学习的流程如上图右边所示。首先产生Idea，然后将Idea转化为Code，最后进行Experiment。接着根据结果修改Idea，继续这种Idea-&gt;Code-&gt;Experiment的循环，直到最终训练得到表现不错的深度学习网络模型。如果计算速度越快，每一步骤耗时越少，那么上述循环越能高效进行。</p>
+
+<h3 id="about-this-course">四、About this Course</h3>
+
+<p>这里简单列一下本系列深度学习专项课程有哪些：</p>
+
+<p><img src="https://pic2.zhimg.com/v2-dfe23cbb83649227d59e7461be3bd605_b.png" alt="" /></p>
+
+<p>目前我们正在学习的是第一门课《Neural Networks and Deep Learning》。Coursera上关于这门课的教学日程安排如下：</p>
+
+<p><img src="https://pic2.zhimg.com/v2-b1f9ae53ce0758eb350fcc974a1557f5_b.png" alt="" /></p>
+
+<h3 id="summary">五、Summary</h3>
+<p>本节课的内容比较简单，主要对深度学习进行了简要概述。首先，我们使用房价预测的例子来建立最简单的但个神经元组成的神经网络模型。然后，我们将例子复杂化，建立标准的神经网络模型结构。接着，我们从监督式学习入手，介绍了不同的神经网络类型，包括Standard NN，CNN和RNN。不同的神经网络模型适合处理不同类型的问题。对数据集本身来说，分为Structured Data和Unstructured Data。近些年来，深度学习对Unstructured Data的处理能力大大提高，例如图像处理、语音识别和语言翻译等。最后，我们用一张对比图片解释了深度学习现在飞速发展、功能强大的原因。归纳其原因包含三点：Data，Computation和Algorithms。</p>
+
+<h3 id="section">注明</h3>
+<p>文章中的内容大都来自Coursera上的课程材料</p>
+
+<h3 id="changelog">Changelog</h3>
+<ul>
+  <li>2017-09-24 创建</li>
+</ul>
+
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="https://Hugo1030.github.io/note/the-history-of-infomation/" class="btn" title="黑客2 - 万物源自比特">向前</a>
+      
+      
+        <a href="https://Hugo1030.github.io/tech/deeplearning-week2/" class="btn" title="吴恩达《神经网络和深度学习》课程笔记（2）-- 神经网络基础之逻辑回归">向后</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2017 沥川. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://github.com/hugo1030" title="沥川 on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="https://Hugo1030.github.io/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'https://Hugo1030.github.io';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://Hugo1030.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="https://Hugo1030.github.io/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

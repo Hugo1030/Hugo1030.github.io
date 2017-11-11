@@ -1,0 +1,267 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>GitHub基本操作 &#8211; 沥川</title>
+<meta name="description" content="GitHub基本操作.">
+<meta name="keywords" content="GitHub">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="GitHub基本操作">
+<meta name="twitter:description" content="GitHub基本操作.">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://Hugo1030.github.io/images/site-logo.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="中国">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub基本操作">
+<meta property="og:description" content="GitHub基本操作.">
+<meta property="og:url" content="https://Hugo1030.github.io/tech/how-to-create-git/">
+<meta property="og:site_name" content="沥川">
+
+
+
+
+
+<link rel="canonical" href="https://Hugo1030.github.io/tech/how-to-create-git/">
+<link href="https://Hugo1030.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="沥川 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://Hugo1030.github.io/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="https://Hugo1030.github.io/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="https://Hugo1030.github.io/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="https://Hugo1030.github.io/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="https://Hugo1030.github.io/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="https://Hugo1030.github.io/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="https://Hugo1030.github.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://Hugo1030.github.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://Hugo1030.github.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://Hugo1030.github.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="https://Hugo1030.github.io/about/" >关于</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/articles/" >随笔</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/note/" >笔记</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/tech/" >技术</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/invest/" >投资</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/wiki/" >维基</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/search/" >搜索</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+  		<a href="https://Hugo1030.github.io/" class="site-logo" rel="home" title="沥川"><img src="https://Hugo1030.github.io/images/site-logo.png" width="200" height="200" alt="沥川 logo" class="animated fadeInDown"></a>
+      
+      <h1 class="site-title animated fadeIn"><a href="https://Hugo1030.github.io/">沥川</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">士不可不弘毅</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="https://Hugo1030.github.io/tags/#GitHub" title="Pages tagged GitHub">GitHub</a></li>
+        </ul>
+        
+          <h1 class="entry-title">GitHub基本操作</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="https://Hugo1030.github.io/images/bio-photo-2.jpg" class="bio-photo" alt="沥川 bio photo"></a>
+        
+        <span class="author vcard">By <span class="fn">沥川</span></span>
+        <span class="entry-date date published"><time datetime="2017-05-08T00:00:00+08:00"><i class="fa fa-calendar-o"></i> May 08, 2017</time></span>
+        
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <h3 id="git">安装GIT</h3>
+
+<ol>
+  <li>
+    <p>在<a href="https://git-scm.com/">GIT官网</a>下载最新for MAC版本的GIT</p>
+  </li>
+  <li>初始设置：
+    <ul>
+      <li>git config –global user.name “XXX”</li>
+      <li>git config –global user.email “xxx@gmail.com”</li>
+    </ul>
+  </li>
+  <li>提高命令输出的可读性，为你大部分输出加上颜色
+    <ul>
+      <li>git config –global color.ui auto</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="ssh-key">设置SSH Key</h3>
+
+<ol>
+  <li>创建SSH Key
+    <ul>
+      <li>ssh-keygen -t rsa -C “XXX@gmail.com”</li>
+      <li>id_rsa文件是私有密钥，id_rsa.pub是公开密钥</li>
+      <li>cat ~/.ssh/id_rsa.pub</li>
+    </ul>
+  </li>
+  <li>添加公开密钥
+    <ul>
+      <li>setting SSH and GPG keys</li>
+      <li>New SSh key复制粘贴就行</li>
+    </ul>
+  </li>
+  <li>用私人密钥与GitHub进行认证
+    <ul>
+      <li>ssh -T git@github.com</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="clone">clone已有仓库</h3>
+<ol>
+  <li>复制SSH clone URL</li>
+  <li>git clone URL</li>
+  <li>cd 仓库名称</li>
+</ol>
+
+<h3 id="section">提交</h3>
+<ol>
+  <li>修改文件
+    <ul>
+      <li>cd Writer004 #进入仓库</li>
+      <li>cd ch0 #进入ch0文件夹</li>
+    </ul>
+  </li>
+  <li>git add 文件名.md #提交到暂存区</li>
+  <li>git commit -m “提示” #提交到仓库</li>
+  <li>git push #到远程仓库</li>
+</ol>
+
+<h3 id="github">GitHub修改后复制到本地</h3>
+<ol>
+  <li>在GitHub上修改文件</li>
+  <li>git pull #直接复制修改到本地仓库</li>
+</ol>
+
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="https://Hugo1030.github.io/articles/the-stroy-of-your-whole-life/" class="btn" title="ch1 - 你一生的故事">向前</a>
+      
+      
+        <a href="https://Hugo1030.github.io/tech/how-to-create-gitbook/" class="btn" title="Gitbook简易配置手册">向后</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2017 沥川. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://github.com/hugo1030" title="沥川 on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="https://Hugo1030.github.io/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'https://Hugo1030.github.io';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://Hugo1030.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="https://Hugo1030.github.io/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

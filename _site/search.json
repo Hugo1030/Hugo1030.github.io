@@ -1,0 +1,297 @@
+[
+
+  
+    {
+      "title"			: "去做不可能的事",
+      "link"			: "https://Hugo1030.github.io/article/sentiment-to-Py104/",
+      "excerpt"		: "Py104 结业感悟"
+    }
+  
+
+  
+    ,{
+      "title"			: "吴恩达《神经网络和深度学习》课程笔记（3）-- 神经网络基础之Python与向量化",
+      "link"			: "https://Hugo1030.github.io/tech/deeplearning-week3/",
+      "excerpt"		: "神经网络基础之Python与向量化"
+    }
+  
+
+  
+    ,{
+      "title"			: "吴恩达《神经网络和深度学习》课程笔记（2）-- 神经网络基础之逻辑回归",
+      "link"			: "https://Hugo1030.github.io/tech/deeplearning-week2/",
+      "excerpt"		: "神经网络基础之逻辑回归"
+    }
+  
+
+  
+    ,{
+      "title"			: "吴恩达《神经网络和深度学习》课程笔记（1）-- 深度学习概述",
+      "link"			: "https://Hugo1030.github.io/tech/deeplearning-week1/",
+      "excerpt"		: "深度学习概述"
+    }
+  
+
+  
+    ,{
+      "title"			: "黑客2 - 万物源自比特",
+      "link"			: "https://Hugo1030.github.io/note/the-history-of-infomation/",
+      "excerpt"		: "《信息简史》读书笔记"
+    }
+  
+
+  
+    ,{
+      "title"			: "「弯道超车」的一些思考",
+      "link"			: "https://Hugo1030.github.io/article/corner-overtaking/",
+      "excerpt"		: "写在「开智大会」之后"
+    }
+  
+
+  
+    ,{
+      "title"			: "黑客1 - 从新手到专家",
+      "link"			: "https://Hugo1030.github.io/note/from-beginner-to-expert/",
+      "excerpt"		: "《程序员思维修炼》读书笔记"
+    }
+  
+
+  
+    ,{
+      "title"			: "基于git+gollum的个人wiki管理器",
+      "link"			: "https://Hugo1030.github.io/tech/install-gollum/",
+      "excerpt"		: "gollum的安装"
+    }
+  
+
+  
+    ,{
+      "title"			: "智慧5 - 傲慢与偏见",
+      "link"			: "https://Hugo1030.github.io/note/the-truth-and-beauty/",
+      "excerpt"		: "《莎士比亚、牛顿和贝多芬：不同的创造模式》读书笔记"
+    }
+  
+
+  
+    ,{
+      "title"			: "从「打新」到投资",
+      "link"			: "https://Hugo1030.github.io/invest/new-stock/",
+      "excerpt"		: "从「打新」开始，再聊聊投资"
+    }
+  
+
+  
+    ,{
+      "title"			: "探索Jupyter notebook",
+      "link"			: "https://Hugo1030.github.io/tech/explore-Jupyter-notebook/",
+      "excerpt"		: "自己探索Jupyter notebook记录"
+    }
+  
+
+  
+    ,{
+      "title"			: "Py101-004北京大区线下聚会",
+      "link"			: "https://Hugo1030.github.io/tech/Py101-004-beijing-metting-note/",
+      "excerpt"		: "20170813 Py101-004北京大区线下聚会"
+    }
+  
+
+  
+    ,{
+      "title"			: "熟能生巧，巧在哪里？",
+      "link"			: "https://Hugo1030.github.io/tech/Py101-004-opening-ceremony/",
+      "excerpt"		: "Py101-004开学典礼备忘"
+    }
+  
+
+  
+    ,{
+      "title"			: "智慧4 - 指向自己的手",
+      "link"			: "https://Hugo1030.github.io/note/note-of-GEB/",
+      "excerpt"		: "《哥德尔.埃舍尔.巴赫》读书笔记"
+    }
+  
+
+  
+    ,{
+      "title"			: "智慧3 - 瞎子与瘸子 ",
+      "link"			: "https://Hugo1030.github.io/note/note-of-Frontiers-of-experience/",
+      "excerpt"		: "《基地》读书笔记"
+    }
+  
+
+  
+    ,{
+      "title"			: "智慧2 - 经验的疆界",
+      "link"			: "https://Hugo1030.github.io/note/note-of-foundation/",
+      "excerpt"		: "《经验的疆界》读书笔记"
+    }
+  
+
+  
+    ,{
+      "title"			: "阳阳",
+      "link"			: "https://Hugo1030.github.io/articles/dream/",
+      "excerpt"		: "清晨梦到阳阳。"
+    }
+  
+
+  
+    ,{
+      "title"			: "智慧1 - 用'创新算法'写读书笔记",
+      "link"			: "https://Hugo1030.github.io/note/note-of-TRIZ/",
+      "excerpt"		: "《创新算法》读书笔记"
+    }
+  
+
+  
+    ,{
+      "title"			: "序曲 - 我要写108篇读书笔记",
+      "link"			: "https://Hugo1030.github.io/note/how-to-leran/",
+      "excerpt"		: "写在读开智正典之前。"
+    }
+  
+
+  
+    ,{
+      "title"			: "ch7 - 钢铁勇士",
+      "link"			: "https://Hugo1030.github.io/articles/science-story/",
+      "excerpt"		: "ch7大作业-写一篇科幻文."
+    }
+  
+
+  
+    ,{
+      "title"			: "ch6 - 致爱人",
+      "link"			: "https://Hugo1030.github.io/articles/lover/",
+      "excerpt"		: "ch6大作业-致我的爱人."
+    }
+  
+
+  
+    ,{
+      "title"			: "ch5 - 月下洞庭",
+      "link"			: "https://Hugo1030.github.io/articles/poem/",
+      "excerpt"		: "ch5大作业-改写诗词."
+    }
+  
+
+  
+    ,{
+      "title"			: "ch4 - 娇蕊",
+      "link"			: "https://Hugo1030.github.io/articles/redrose-and-whiterose/",
+      "excerpt"		: "ch4大作业-《红玫瑰与白玫瑰》读书笔记."
+    }
+  
+
+  
+    ,{
+      "title"			: "ch3 - 写作清单",
+      "link"			: "https://Hugo1030.github.io/articles/the-list-of-write/",
+      "excerpt"		: "写作清单-《中文的常态及变态》余光中."
+    }
+  
+
+  
+    ,{
+      "title"			: "ch3 - 爱",
+      "link"			: "https://Hugo1030.github.io/articles/ch3-myfriend/",
+      "excerpt"		: "ch3大作业-最小故事."
+    }
+  
+
+  
+    ,{
+      "title"			: "Learn python in hard way 21-40",
+      "link"			: "https://Hugo1030.github.io/tech/learn-python-in-hard-way-ex21-40/",
+      "excerpt"		: "Learn python in hard way 练习 21-40."
+    }
+  
+
+  
+    ,{
+      "title"			: "ch2 - 我的飞船记趣",
+      "link"			: "https://Hugo1030.github.io/articles/my-daylife-in-spaceship/",
+      "excerpt"		: "ch2大作业-我的生活记趣."
+    }
+  
+
+  
+    ,{
+      "title"			: "Learn python in hard way 1-20",
+      "link"			: "https://Hugo1030.github.io/tech/learn-python-in-hard-way-ex1-20/",
+      "excerpt"		: "Learn python in hard way 练习 1-20."
+    }
+  
+
+  
+    ,{
+      "title"			: "Gitbook简易配置手册",
+      "link"			: "https://Hugo1030.github.io/tech/how-to-create-gitbook/",
+      "excerpt"		: "Gitbook简易配置手册."
+    }
+  
+
+  
+    ,{
+      "title"			: "GitHub基本操作",
+      "link"			: "https://Hugo1030.github.io/tech/how-to-create-git/",
+      "excerpt"		: "GitHub基本操作."
+    }
+  
+
+  
+    ,{
+      "title"			: "ch1 - 你一生的故事",
+      "link"			: "https://Hugo1030.github.io/articles/the-stroy-of-your-whole-life/",
+      "excerpt"		: "ch1大作业-《你一生的故事》读书笔记."
+    }
+  
+
+  
+    ,{
+      "title"			: "ch0 - 我的小传",
+      "link"			: "https://Hugo1030.github.io/articles/ch0-my-story/",
+      "excerpt"		: "cho大作业-我的小传."
+    }
+  
+
+  
+    ,{
+      "title"			: "用Jekyll创建GitHub Pages个人博客",
+      "link"			: "https://Hugo1030.github.io/tech/Jekyll-github-pages/",
+      "excerpt"		: "用Jekyll创建GitHub Pages个人博客."
+    }
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+]

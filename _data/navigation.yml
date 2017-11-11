@@ -1,0 +1,22 @@
+# Site navigation links
+
+- title: 关于
+  url: /about/
+
+- title: 随笔
+  url: /articles/
+
+- title: 笔记
+  url: /note/
+
+- title: 技术
+  url: /tech/
+
+- title: 投资
+  url: /invest/
+
+- title: 维基
+  url: /wiki/
+
+- title: 搜索
+  url: /search/

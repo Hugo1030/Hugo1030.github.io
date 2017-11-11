@@ -1,0 +1,459 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>探索Jupyter notebook &#8211; 沥川</title>
+<meta name="description" content="自己探索Jupyter notebook记录">
+<meta name="keywords" content="Python">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="探索Jupyter notebook">
+<meta name="twitter:description" content="自己探索Jupyter notebook记录">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://Hugo1030.github.io/images/site-logo.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="中国">
+<meta property="og:type" content="article">
+<meta property="og:title" content="探索Jupyter notebook">
+<meta property="og:description" content="自己探索Jupyter notebook记录">
+<meta property="og:url" content="https://Hugo1030.github.io/tech/explore-Jupyter-notebook/">
+<meta property="og:site_name" content="沥川">
+
+
+
+
+
+<link rel="canonical" href="https://Hugo1030.github.io/tech/explore-Jupyter-notebook/">
+<link href="https://Hugo1030.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="沥川 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://Hugo1030.github.io/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="https://Hugo1030.github.io/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="https://Hugo1030.github.io/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="https://Hugo1030.github.io/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="https://Hugo1030.github.io/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="https://Hugo1030.github.io/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="https://Hugo1030.github.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://Hugo1030.github.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://Hugo1030.github.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://Hugo1030.github.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="https://Hugo1030.github.io/about/" >关于</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/articles/" >随笔</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/note/" >笔记</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/tech/" >技术</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/invest/" >投资</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/wiki/" >维基</a></li>
+		  
+		    
+		    <li><a href="https://Hugo1030.github.io/search/" >搜索</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+  		<a href="https://Hugo1030.github.io/" class="site-logo" rel="home" title="沥川"><img src="https://Hugo1030.github.io/images/site-logo.png" width="200" height="200" alt="沥川 logo" class="animated fadeInDown"></a>
+      
+      <h1 class="site-title animated fadeIn"><a href="https://Hugo1030.github.io/">沥川</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">士不可不弘毅</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="https://Hugo1030.github.io/tags/#Python" title="Pages tagged Python">Python</a></li>
+        </ul>
+        
+          <h1 class="entry-title">探索Jupyter notebook</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="https://Hugo1030.github.io/images/bio-photo-2.jpg" class="bio-photo" alt="沥川 bio photo"></a>
+        
+        <span class="author vcard">By <span class="fn">沥川</span></span>
+        <span class="entry-date date published"><time datetime="2017-08-13T00:00:00+08:00"><i class="fa fa-calendar-o"></i> August 13, 2017</time></span>
+        
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <h1 id="jupyter-notebook">探索Jupyter notebook</h1>
+
+<h2 id="jupyter-notebook-1">Jupyter notebook是什么？</h2>
+
+<p>Jupyther notebook 是一个可以把代码、图像、注释、公式和作图集于一处，从而实现可读性分析的一种灵活的工具。 <strong>它的核心在于展示与快速迭代。</strong></p>
+
+<p><img src="https://www.dataquest.io/blog/images/jupyter/interface-screenshot.png" alt="Jupyter notebook界面" /></p>
+
+<h2 id="jupyter-notebook-2">为什么要使用 Jupyter notebook？</h2>
+
+<p>看看各路大神，都用Jupyter notebook干了什么，自然就回答了这个问题。</p>
+
+<ul>
+  <li>先来个有趣的，三体问题模拟器
+    <ul>
+      <li><a href="http://nbviewer.jupyter.org/github/pjpmarques/Julia-Modeling-the-World/blob/master/Three-Body%20Problem.ipynb">Three-Body Problem</a></li>
+    </ul>
+  </li>
+  <li>各路大神写的Python教程
+    <ul>
+      <li><a href="http://nbviewer.jupyter.org/github/ehmatthes/intro_programming/blob/master/notebooks/index.ipynb">Introduction to Python</a></li>
+      <li><a href="http://mbakker7.github.io/exploratory_computing_with_python/">Exploratory computing with Python by Mark Bakker</a></li>
+      <li><a href="http://nbviewer.jupyter.org/github/yoavram/CS1001.py/tree/master/">Extended Introduction to Computer Science with Python</a></li>
+    </ul>
+  </li>
+  <li>机器学习人工神经网络模型
+    <ul>
+      <li><a href="http://nbviewer.jupyter.org/github/masinoa/machine_learning/blob/master/04_Neural_Networks.ipynb">Neural Networks</a></li>
+    </ul>
+  </li>
+  <li>表格数据处理库Pandas教程
+    <ul>
+      <li><a href="http://nbviewer.jupyter.org/github/phelps-sg/python-bigdata/blob/master/src/main/ipynb/pandas.ipynb">.Analysing structured data using pandas</a></li>
+    </ul>
+  </li>
+  <li>大规模并行计算框架Spark教程
+    <ul>
+      <li><a href="http://nbviewer.jupyter.org/github/phelps-sg/python-bigdata/blob/master/src/main/ipynb/spark-mapreduce.ipynb">Map-Reduce and Apache Spark</a></li>
+    </ul>
+  </li>
+  <li>Microsoft Office+Python自动化
+    <ul>
+      <li><a href="http://nbviewer.jupyter.org/github/sanand0/ipython-notebooks/blob/master/Office.ipynb">Automating Microsoft Office with Python</a></li>
+    </ul>
+  </li>
+  <li>Twitter数据挖掘入门
+    <ul>
+      <li><a href="http://nbviewer.jupyter.org/github/hugadams/twitter_play/blob/master/tweepy_tutorial.ipynb">Datamining Twitter with tweepy</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="jupyter-notebook-3">如何安装Jupyter notebook？</h2>
+
+<ul>
+  <li>直接安装<a href="https://www.continuum.io/downloads">Anaconda</a>(强烈推荐)</li>
+  <li>使用pip安装Jupyter notebook
+    <ul>
+      <li>在命令行输入：<code class="highlighter-rouge">pip3 install jupyter</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="jupyter-notebookpython2-and-3-">如何在Jupyter notebook内，实现Python2 and 3 共存？</h2>
+
+<h3 id="python-36">安装Python 3.6</h3>
+
+<p>从官网下载Python 3.6对应的的Anaconda For macOS安装包——<a href="https://www.continuum.io/downloads#macos">Download</a>。安装过程不赘述。</p>
+
+<h3 id="python-27">安装Python 2.7</h3>
+
+<p>打开terminal，输入</p>
+
+<p><code class="highlighter-rouge">conda create --name python27 python=2.7</code></p>
+
+<h3 id="envname-">进入进入名为 env_name 的环境</h3>
+
+<p><code class="highlighter-rouge">source activate env_name</code></p>
+
+<h3 id="section">退出当前环境</h3>
+
+<p><code class="highlighter-rouge">source deactivate</code></p>
+
+<h3 id="section-1">显示所有环境</h3>
+
+<p><code class="highlighter-rouge">conda env list</code></p>
+
+<h2 id="jupyter-notebook-4">Jupyter notebook常用快捷键</h2>
+
+<p>使用快捷键可以大幅提高效率，让你欲罢不能。使用Cmd + Shift + P 调出命令面板。</p>
+
+<p>Jupyter Notebook 有两种键盘输入模式。编辑模式，允许你往单元中键入代码或文本；这时的单元框线是绿色的。命令模式，键盘输入运行程序命令；这时的单元框线是灰色</p>
+
+<h3 id="esc-">命令模式 (按键 Esc 开启)</h3>
+
+<ul>
+  <li>Enter : 转入编辑模式</li>
+  <li>Shift-Enter : 运行本单元，选中下个单元</li>
+  <li>command-Enter : 运行本单元</li>
+  <li>Alt-Enter : 运行本单元，在其下插入新单元</li>
+  <li>Y : 单元转入代码状态</li>
+  <li>M :单元转入markdown状态</li>
+  <li>Up : 选中上方单元</li>
+  <li>K : 选中上方单元</li>
+  <li>Down : 选中下方单元</li>
+  <li>J : 选中下方单元</li>
+  <li>Shift-K : 扩大选中上方单元</li>
+  <li>Shift-J : 扩大选中下方单元</li>
+  <li>A : 在上方插入新单元</li>
+  <li>B : 在下方插入新单元</li>
+  <li>X : 剪切选中的单元</li>
+  <li>C : 复制选中的单元</li>
+  <li>F 在代码中查找、替换</li>
+  <li>Shift-V : 粘贴到上方单元</li>
+  <li>V : 粘贴到下方单元</li>
+  <li>Z : 恢复删除的最后一个单元</li>
+  <li>D,D : 删除选中的单元</li>
+  <li>Shift-M : 合并选中的单元</li>
+  <li>command-S : 文件存盘</li>
+</ul>
+
+<h3 id="enter-">编辑模式 ( Enter 键启动)</h3>
+<ul>
+  <li>Tab : 代码补全或缩进</li>
+  <li>command-A : 全选</li>
+  <li>command-Z : 复原</li>
+  <li>command-Up : 跳到单元开头</li>
+  <li>command-End : 跳到单元末尾</li>
+  <li>command-Left : 跳到左边一个字首</li>
+  <li>command-Right : 跳到右边一个字首</li>
+  <li>Shift-Enter : 运行本单元，选中下一单元</li>
+  <li>command-Enter : 运行本单元</li>
+  <li>Alt-Enter : 运行本单元，在下面插入一单元</li>
+</ul>
+
+<h2 id="section-2">轻松链接到文档</h2>
+
+<p>在库、方法或变量的前面打上?，即可打开相关语法的帮助文档。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>?str.replace
+
+Docstring: L.append(object) -&gt; None -- append object to end
+Type:      method_descriptor
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>?list.pop
+
+Docstring:
+L.pop([index]) -&gt; item -- remove and return item at index (default last).
+Raises IndexError if list is empty or index is out of range.
+Type:      method_descriptor
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>?dict.get
+
+Docstring: D.get(k[,d]) -&gt; D[k] if k in D, else d.  d defaults to None.
+Type:      method_descriptor
+</code></pre>
+</div>
+
+<h2 id="jupyter-notebook-5">在Jupyter notebook里面作图</h2>
+
+<p>推荐使用matplotlib，可通过%matplotlib inline 激活</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>from pylab import *
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = figure()
+ax = Axes3D(fig)
+X = np.arange(-4, 4, 0.25)
+Y = np.arange(-4, 4, 0.25)
+X, Y = np.meshgrid(X, Y)
+R = np.sqrt(X**2 + Y**2)
+Z = np.sin(R)
+
+ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap='hot')
+
+show()
+</code></pre>
+</div>
+
+<h2 id="jupyter-magic">Jupyter Magic命令</h2>
+
+<p>Jupyter notebook提供了许多魔法命令，使得在Jupyter notebook环境中的操作更加得心应手。魔法命令都以%或者%%开头，以%开头的成为行命令，%%开头的称为单元命令。行命令只对命令所在的行有效，而单元命令则必须出现在单元的第一行，对整个单元的代码进行处理。</p>
+
+<p>执行%magic可以查看关于各个命令的说明，而在命令之后添加?可以查看该命令的详细说明。</p>
+
+<p>推荐阅读Jupyter magic命令的<a href="http://ipython.readthedocs.io/en/stable/interactive/magics.html">相关文档</a>，它一定会对你很有帮助。</p>
+
+<p>下面是我最爱的几个：</p>
+
+<h3 id="jupyter-magic---run-python">Jupyter Magic - %run: 运行python代码</h3>
+
+<p>%run 可以运行.py格式的python代码——这是众所周知的。不那么为人知晓的事实是它也可以运行其它的jupyter notebook文件，这一点很有用。</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>%run ./ex1.py
+</code></pre>
+</div>
+<h3 id="jupyter-magic---who-">Jupyter Magic - %who: 列出所有的全局变量</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>one = "for the money"
+two = "for the show"
+three = "to get ready now go cat go"
+%who str
+</code></pre>
+</div>
+<h3 id="jupyter-magic--">Jupyter Magic – 计时</h3>
+
+<p>有两种用于计时的jupyter magic命令： %%time 和 %timeit.当你有一些很耗时的代码，想要查清楚问题出在哪时，这两个命令非常给力。</p>
+
+<p>%%time 会告诉你cell内代码的单次运行时间信息。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>%%time
+a = []
+for i in range(10000000):
+    a.append(i)
+</code></pre>
+</div>
+
+<p>%%timeit 使用了Python的 timeit 模块，该模块运行某语句100，000次（默认值），然后提供最快的3次的平均值作为结果。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>%%timeit
+a = []
+for i in range(10):
+    a.append(i)
+</code></pre>
+</div>
+
+<h3 id="notebook">在notebook内用不同的内核运行代码</h3>
+
+<p>如果你想要，其实可以把不同内核的代码结合到一个notebook里运行。</p>
+
+<p>只需在每个单元格的起始，用Jupyter magics调用kernal的名称：</p>
+
+<ul>
+  <li>%%bash</li>
+  <li>%%HTML</li>
+  <li>%%python2</li>
+  <li>%%python3</li>
+  <li>%%ruby</li>
+  <li>%%perl</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>%%bash
+        for i in {1..5}
+        do
+           echo "i is $i"
+        done
+</code></pre>
+</div>
+
+<h2 id="jupyter-notebook-6">展示你的Jupyter notebook</h2>
+
+<ul>
+  <li>GitHub 天然支持 Jupyter Notebook —— 上传笔记后，你可以直接在仓库中看到渲染效果，管理版本。<a href="https://github.com/Hugo1030/learnpython/blob/master/jupyter-notebook-turials.ipynb">展示文档</a></li>
+  <li>可以使用官方的<a href="https://nbviewer.jupyter.org/">nbviewer</a>，也非常容易展示和分享，比如<a href="http://nbviewer.jupyter.org/github/Hugo1030/learnpython/blob/master/jupyter-notebook-turials.ipynb">展示文档</a></li>
+</ul>
+
+<h2 id="changelog">Changelog</h2>
+<p>170813 沥川创建，博文Jupyter notebook版本链接<a href="https://github.com/Hugo1030/learnpython/blob/master/jupyter-notebook-turials.ipynb">jupyter文档地址</a></p>
+
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="https://Hugo1030.github.io/tech/Py101-004-beijing-metting-note/" class="btn" title="Py101-004北京大区线下聚会">向前</a>
+      
+      
+        <a href="https://Hugo1030.github.io/invest/new-stock/" class="btn" title="从「打新」到投资">向后</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2017 沥川. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://github.com/hugo1030" title="沥川 on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="https://Hugo1030.github.io/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'https://Hugo1030.github.io';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://Hugo1030.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="https://Hugo1030.github.io/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>
