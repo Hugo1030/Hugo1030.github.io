@@ -2,7 +2,7 @@
 layout: post
 title: "吴恩达《神经网络和深度学习》课程笔记（2）-- 神经网络基础之逻辑回归"
 excerpt: "神经网络基础之逻辑回归"
-categories: tech
+categories: tech	
 tags: [deeplearning]
 author: 沥川
 modified:
