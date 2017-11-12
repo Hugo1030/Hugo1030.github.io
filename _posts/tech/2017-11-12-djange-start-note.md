@@ -256,9 +256,9 @@ modified:
   * 将文章对象们打包成列表，传递到前端
   * 前端页面把文章以标题超链接的形式逐个列出
 * 模板 for 循环
-  * {% for xx in xxs %}
+  * { for xx in xxs }
   * HTML 语句
-  * {% endfor %}
+  * { endfor }
 
 ### 博客文章页面
 * 页面内容
@@ -273,7 +273,7 @@ modified:
 ### Django 中的超链接
 * 超链接目标地址
   * href 后面是目标地址
-  * template 中可以用 "{% url 'app_name:url_name' param %}"
+  * template 中可以用 "{ url 'app_name:url_name' param }"
   * 其中 app_name 和 url_name 都在 url 中配置
 
 ### 再配 URL
