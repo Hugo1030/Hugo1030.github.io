@@ -46,7 +46,11 @@ modified:
         * [Comprehensive data exploration with Python
         ](https://www.kaggle.com/pmarcelino/comprehensive-data-exploration-with-python) 房屋销售数据分析
 
-- 参加 Kaggle 比赛, 你会比想象中进步更快
+## Kaggle 学习, 天池实战 
+
+* kaggle 的水平更高, 技术领先, 资源共享
+* 可以将学到的知识迁移到国内举办的比赛
+* 这样学习进步最快
 
 ### Changelog
 2018-02-03 创建
