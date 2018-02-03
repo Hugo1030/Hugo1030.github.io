@@ -22,11 +22,11 @@ modified:
 - 不需要机器学习相关知识, 便可上手. 前人将常用功能封装成  API , 直接调用即可.
 
     - 常用 Python 库:
-        * Numpy
-        * Pandas
-        * Matplotlib/Seaborn
-        * Sklearn
-        * Keras
+        * [Numpy](http://cs231n.github.io/python-numpy-tutorial/)
+        * [Pandas](https://pandas.pydata.org/pandas-docs/stable/tutorials.html)
+        * [Seaborn](https://seaborn.pydata.org/tutorial.html)
+        * [Sklearn](http://scikit-learn.org/stable/tutorial/index.html)
+        * [Keras](https://elitedatascience.com/keras-tutorial-deep-learning-in-python)
 
 - 项目和实际紧密结合, 而且非常有趣.
 
