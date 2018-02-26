@@ -5,8 +5,6 @@ excerpt: "So Simple is a responsive Jekyll theme for your words and images."
 modified:
 ---
 
-80后，无业，功课协助者，投资者，学习者
-
 ### 关于博客
 
 #### 1.我为什么写博客？
