@@ -22,7 +22,7 @@ modified:
 
 **采用 RMSLE 作为评测指标:**
 
-![][image-1]
+![](https://ws3.sinaimg.cn/large/006tNc79ly1fpdk96suhlj306w02oa9y.jpg)
 
 相较于初赛的 RMSE, RMSLE 对大值误差不那么敏感, 但是对小值的偏差更加敏感.
 
