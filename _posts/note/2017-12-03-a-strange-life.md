@@ -1,4 +1,5 @@
 ---
+---
 layout: post
 title: "智慧6 - 给时间记帐"
 excerpt: "《奇特的一生》读书笔记"
