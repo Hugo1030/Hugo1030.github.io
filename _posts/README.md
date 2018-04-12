@@ -11,5 +11,5 @@
 ```
 - note/2018-04-09-PAFs.md
     <= Realtime Multi-Person 2D Pose Estimation using Part Afﬁnity Fields ∗
-    => [《Realtime Multi-Person 2D Pose Estimation using Part Afﬁnity Fields ∗》笔记](2018-04-09-PAFs.md)
+    => [《Realtime Multi-Person 2D Pose Estimation using Part Afﬁnity Fields》笔记](2018-04-09-PAFs.md)
 ```
