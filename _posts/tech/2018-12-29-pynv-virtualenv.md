@@ -10,7 +10,7 @@ modified:
 
 ## 背景
 
-触发 [Pythonic 101 Ch00](https://gitlab.com/101camp/py/blob/master/ch00.md) 为了完成 camp101 作业任务
+触发 [Pythonic 101 Ch00](https://gitlab.com/101camp/py/blob/master/ch00.md)
 
 需要配置运行环境
 
