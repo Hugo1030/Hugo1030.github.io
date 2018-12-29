@@ -169,6 +169,40 @@ pyenv-virtualenv命令集:
     
         删除现有virtualenv
 
+
+---
+
+## 二次探索背景
+
+ [7d[TASK]181229 怼周会 & DU90w 怼周刊投稿 #570](https://github.com/DebugUself/du4proto/issues/570) 再次触发
+
+@ZoomQuiet 提到不用 `activate` / `deactivate` 命令, 可以自动激活环境
+
+## 目标
+
+cd 到项目目录时自动切换相应的虚拟环境 `env-2.7.15`
+
+## 计划
+
+- [x] 配置需要 pyenv 环境
+- [x] 针对文件夹设置 pyenv
+- [x] 进入文件夹自动激活
+
+## 尝试
+
+google 搜索 `pyenv 进入文件夹 自动激活` 找到  [pyenv及pyenv-virtual配置](https://www.jianshu.com/p/05676f0cd0b5)
+
+进入文件夹, 输入
+```
+$ pyenv local env-2.7.15
+```
+
+即可, 效果如下
+
+![](https://pics.ibrainbaby.cn/2018-12-29-141534.png)
+
+
+
 ## 参考
 
 - [Mac安装pyenv和pyenv-virtualenv](https://www.jianshu.com/p/13e300c63abd)
@@ -178,6 +212,7 @@ pyenv-virtualenv命令集:
 
 
 ## changelog
+- 2018-12-29 lichuan auto deploy 0.1h
 - 2018-12-29 lichuan init. explore pyenv 1h
 
 
