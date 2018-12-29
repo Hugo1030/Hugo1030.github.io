@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " 使用 pyenv 和 pyenv-virtualenv 配置虚拟环境"
-excerpt: " Oct 13 怼周会分享 "
+title: " 使用 pyenv 和 pyenv-virtualenv 配置虚拟环境 "
+excerpt: " 使用 pyenv 和 pyenv-virtualenv 配置虚拟环境 "
 categories: tech
 tags: [怼周会]
 author: 沥川
