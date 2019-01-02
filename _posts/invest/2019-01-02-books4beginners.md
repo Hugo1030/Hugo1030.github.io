@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "入门书单推荐"
-excerpt: "入门书单推荐"
+title: " 投资小白入门书单推荐 "
+excerpt: " 投资小白入门书单推荐 "
 categories: invest
 tags: [投资]
 author: 沥川
