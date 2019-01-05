@@ -1,9 +1,9 @@
 ---
 layout: post
 title: " TwoSigma: Quant features testing "
-excerpt: " kaggle "
+excerpt: " kaggle competitions - two sigma "
 categories: tech
-tags: [蟒营]
+tags: [kaggle]
 author: 沥川
 modified:
 ---
