@@ -43,5 +43,5 @@ modified:
     - 职业棋手
 
 ## Changelog
-
+- 2022-02-24 update 围棋思想家, 老光教围棋.
 - 2021-06-09 Init.
