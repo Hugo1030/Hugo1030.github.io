@@ -21,6 +21,10 @@ modified:
     - 职业围棋比赛, 职业棋手讲解
 
 ### Bilibli
+- [老光教围棋](https://space.bilibili.com/1729971280)
+    - 很喜欢看的围棋 up 主, 讲解清晰, 行棋正统.
+- [围棋思想家](https://space.bilibili.com/518286441)
+    - 对我从 8 级提升到 3 级帮助挺大, 特别是不贪吃, 关键时刻注意防守.
 - [林辞linc](https://space.bilibili.com/344223775/)
     - 二连星自战复盘解说
 - [领冠棋院18923174350](https://space.bilibili.com/59801562/)
